@@ -48,6 +48,27 @@ class _HeroCarouselState extends State<HeroCarousel> {
     'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
   ];
 
+  final List<String> _titles = const [
+    'Essential Range - Over 20% OFF!',
+    'The Print Shack',
+    'Hungry?',
+    'What\'s your next move...',
+  ];
+
+  final List<String> _subtitles = const [
+    'Over 20% off our Essential Range. Come and grab yours while stock lasts!',
+    'Let\'s create something uniquely you with our personalisation service --\nFrom £3 for one line of text!',
+    'We got this 🍕',
+    'Are you with us?',
+  ];
+
+  final List<String> _buttonLabels = const [
+    'BROWSE COLLECTION',
+    'FIND OUT MORE',
+    'ORDER DOMINO\'S PIZZA NOW',
+    'FIND YOUR STUDENT ACCOMODATION',
+  ];
+
   @override
   void initState() {
     super.initState();
@@ -125,7 +146,7 @@ class _HeroCarouselState extends State<HeroCarousel> {
             },
           ),
 
-          // Content overlay (keeps the same text/button)
+          // Content overlay (per-slide title, subtitle, and the purple browse button)
           Positioned(
             left: 24,
             right: 24,
@@ -133,9 +154,9 @@ class _HeroCarouselState extends State<HeroCarousel> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text(
-                  'Placeholder Hero Title',
-                  style: TextStyle(
+                Text(
+                  _titles[_current],
+                  style: const TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -143,9 +164,9 @@ class _HeroCarouselState extends State<HeroCarousel> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                const Text(
-                  "This is placeholder text for the hero section.",
-                  style: TextStyle(
+                Text(
+                  _subtitles[_current],
+                  style: const TextStyle(
                     fontSize: 20,
                     color: Colors.white,
                     height: 1.5,
@@ -162,9 +183,9 @@ class _HeroCarouselState extends State<HeroCarousel> {
                       borderRadius: BorderRadius.zero,
                     ),
                   ),
-                  child: const Text(
-                    'BROWSE PRODUCTS',
-                    style: TextStyle(fontSize: 14, letterSpacing: 1),
+                  child: Text(
+                    _buttonLabels[_current],
+                    style: const TextStyle(fontSize: 14, letterSpacing: 1),
                   ),
                 ),
               ],
@@ -261,7 +282,7 @@ class HomeScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     color: const Color(0xFF4d2963),
                     child: const Text(
-                      'BIG SALE! OUR ESSENTIAL RANGE HAS DROPPED IN PRICE! OVER 20% OFF! COME GRAB YOURS WHILE STOCK LASTS!',
+                      'BIG SALE! OUR ESSENTIAL RANGE HAS DROPPED IN PRICE! OVER 20% OFF! COME GRAB YOURS WHILE STOCK\nLASTS!',
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
