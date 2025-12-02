@@ -267,7 +267,7 @@ class HomeScreen extends StatelessWidget {
                           title: 'Signature T-Shirt',
                           price: '£14.99',
                           imageUrl:
-                              'https://shop.upsu.net/collections/signature-range-1/products/signature-t-shirt',
+                              'https://shop.upsu.net/cdn/shop/files/Signature_T-Shirt_Indigo_Blue_2_1024x1024@2x.jpg?v=1758290534',
                         ),
                       ],
                     ),
