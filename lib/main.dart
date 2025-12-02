@@ -233,7 +233,50 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
 
-            // Template Collection Section
+            // Essential Range Section
+            Container(
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(40.0),
+                child: Column(
+                  children: [
+                    const Text(
+                      'ESSENTIAL RANGE - OVER 20% OFF!',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        letterSpacing: 1,
+                      ),
+                    ),
+                    const SizedBox(height: 48),
+                    GridView.count(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      crossAxisCount:
+                          MediaQuery.of(context).size.width > 600 ? 2 : 1,
+                      crossAxisSpacing: 24,
+                      mainAxisSpacing: 48,
+                      children: const [
+                        ProductCard(
+                          title: 'Limited Edition Essential Zip Hoodies',
+                          price: '£20.00',
+                          imageUrl:
+                              'https://shop.upsu.net/cdn/shop/files/Pink_Essential_Hoodie_2a3589c2-096f-479f-ac60-d41e8a853d04_1024x1024@2x.jpg?v=1749131089',
+                        ),
+                        ProductCard(
+                          title: 'Essential T-shirt',
+                          price: '£6.99',
+                          imageUrl:
+                              'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            // Signature Range Section
             Container(
               color: Colors.white,
               child: Padding(
@@ -276,7 +319,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
 
-            // Products Section
+            // Portsmouth City Collection Section
             Container(
               color: Colors.white,
               child: Padding(
