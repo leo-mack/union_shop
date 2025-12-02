@@ -272,7 +272,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             // Header
             Container(
-              height: 100,
+              height: 150,
               color: Colors.white,
               child: Column(
                 children: [
@@ -299,13 +299,13 @@ class HomeScreen extends StatelessWidget {
                             },
                             child: Image.network(
                               'https://shop.upsu.net/cdn/shop/files/upsu_300x300.png?v=1614735854',
-                              height: 18,
+                              height: 40,
                               fit: BoxFit.cover,
                               errorBuilder: (context, error, stackTrace) {
                                 return Container(
                                   color: Colors.grey[300],
-                                  width: 18,
-                                  height: 18,
+                                  width: 40,
+                                  height: 40,
                                   child: const Center(
                                     child: Icon(Icons.image_not_supported,
                                         color: Colors.grey),
