@@ -314,6 +314,119 @@ class HomeScreen extends StatelessWidget {
                               },
                             ),
                           ),
+                          const SizedBox(width: 20),
+                          // Navigation bar: 4 buttons on top, 2 below
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              // Top 4 buttons
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  TextButton(
+                                    onPressed: placeholderCallbackForButtons,
+                                    child: const Text(
+                                      'Shop',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 12),
+                                  // Collections with dropdown
+                                  PopupMenuButton<String>(
+                                    onSelected: (value) => placeholderCallbackForButtons(),
+                                    itemBuilder: (context) => const [
+                                      PopupMenuItem(value: 'clothing', child: Text('Clothing')),
+                                      PopupMenuItem(value: 'merchandise', child: Text('Merchandise')),
+                                      PopupMenuItem(value: 'halloween', child: Text('Halloween 🎃')),
+                                    ],
+                                    child: Row(
+                                      children: const [
+                                        Text(
+                                          'Shop',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                        SizedBox(width: 4),
+                                        Icon(Icons.arrow_drop_down, color: Colors.black),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(width: 12),
+                                  // About with dropdown
+                                  PopupMenuButton<String>(
+                                    onSelected: (value) => placeholderCallbackForButtons(),
+                                    itemBuilder: (context) => const [
+                                      PopupMenuItem(value: 'about', child: Text('About')),
+                                      PopupMenuItem(value: 'personalisation', child: Text('Personalisation')),
+                                    ],
+                                    child: Row(
+                                      children: const [
+                                        Text(
+                                          'The Print Shack',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                        SizedBox(width: 4),
+                                        Icon(Icons.arrow_drop_down, color: Colors.black),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(width: 12),
+                                  TextButton(
+                                    onPressed: placeholderCallbackForButtons,
+                                    child: const Text(
+                                      'Contact',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 6),
+                              // Bottom 2 buttons
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  TextButton(
+                                    onPressed: placeholderCallbackForButtons,
+                                    child: const Text(
+                                      'Account',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 12),
+                                  TextButton(
+                                    onPressed: placeholderCallbackForButtons,
+                                    child: const Text(
+                                      'Cart',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                           const Spacer(),
                           ConstrainedBox(
                             constraints: const BoxConstraints(maxWidth: 600),
