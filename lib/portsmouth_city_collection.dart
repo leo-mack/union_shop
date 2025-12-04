@@ -376,10 +376,10 @@ class PortsmouthCityCollection extends StatelessWidget {
                         'https://shop.upsu.net/cdn/shop/files/PortsmouthCityCoaster_1024x1024@2x.jpg?v=1757419192',
                   ),
                   _CollectionProductCard(
-                    title: 'Portsmouth City',
+                    title: 'Portsmouth City Water Bottle',
                     price: '£12.00',
                     imageUrl:
-                        'https://shop.upsu.net/cdn/shop/files/PortsmouthCityNotebook_1024x1024@2x.jpg?v=1757419192',
+                        'https://shop.upsu.net/cdn/shop/files/PortsmouthCityWaterBottle5_1024x1024@2x.jpg?v=1755251995',
                   ),
                 ],
               ),
