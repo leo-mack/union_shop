@@ -5,6 +5,7 @@ import 'package:union_shop/portsmouth_city_collection.dart';
 import 'package:union_shop/login_page.dart';
 import 'package:union_shop/product_detail_page.dart';
 import 'package:union_shop/essential_range_collection.dart';
+import 'package:union_shop/cart_page.dart';
 
 void main() {
   runApp(const UnionShopApp());
@@ -28,6 +29,7 @@ class UnionShopApp extends StatelessWidget {
       // In your browser, try this link: http://localhost:49856/#/product
       routes: {
         '/product': (context) => const ProductPage(),
+        '/cart': (context) => const CartPage(),
         '/collections/portsmouth-city': (context) => const PortsmouthCityCollection(),
         '/collections/essential-range': (context) => const EssentialRangeCollection(),
         '/login': (context) => const LoginPage(),
@@ -487,7 +489,7 @@ class HomeScreen extends StatelessWidget {
                                     minWidth: 32,
                                     minHeight: 32,
                                   ),
-                                  onPressed: placeholderCallbackForButtons,
+                                  onPressed: () => Navigator.pushNamed(context, '/cart'),
                                 ),
                               ],
                             ),

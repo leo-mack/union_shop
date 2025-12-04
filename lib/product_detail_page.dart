@@ -216,7 +216,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                     minWidth: 32,
                                     minHeight: 32,
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () => Navigator.pushNamed(context, '/cart'),
                                 ),
                               ],
                             ),

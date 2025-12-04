@@ -197,7 +197,7 @@ class PortsmouthCityCollection extends StatelessWidget {
                                     minWidth: 32,
                                     minHeight: 32,
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () => Navigator.pushNamed(context, '/cart'),
                                 ),
                               ],
                             ),
