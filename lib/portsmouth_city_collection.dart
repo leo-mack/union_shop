@@ -160,24 +160,11 @@ class PortsmouthCityCollection extends StatelessWidget {
                                     minWidth: 32,
                                     minHeight: 32,
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () => Navigator.pushNamed(context, '/login'),
                                 ),
                                 IconButton(
                                   icon: const Icon(
                                     Icons.shopping_bag_outlined,
-                                    size: 18,
-                                    color: Colors.grey,
-                                  ),
-                                  padding: const EdgeInsets.all(8),
-                                  constraints: const BoxConstraints(
-                                    minWidth: 32,
-                                    minHeight: 32,
-                                  ),
-                                  onPressed: () {},
-                                ),
-                                IconButton(
-                                  icon: const Icon(
-                                    Icons.menu,
                                     size: 18,
                                     color: Colors.grey,
                                   ),
@@ -276,9 +263,9 @@ class PortsmouthCityCollection extends StatelessWidget {
                     value: 'All products',
                     items: const [
                       DropdownMenuItem(value: 'All products', child: Text('All products')),
-                      DropdownMenuItem(value: 'Postcards', child: Text('Postcards')),
-                      DropdownMenuItem(value: 'Magnets', child: Text('Magnets')),
-                      DropdownMenuItem(value: 'Bookmarks', child: Text('Bookmarks')),
+                      DropdownMenuItem(value: 'Julia Gash', child: Text('Julia Gash')),
+                      DropdownMenuItem(value: 'Merchandise', child: Text('Merchandise')),
+                      DropdownMenuItem(value: 'Portsmouth City Collection', child: Text('Portsmouth City Collection')),
                     ],
                     onChanged: (_) {},
                   ),
@@ -289,11 +276,16 @@ class PortsmouthCityCollection extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   DropdownButton<String>(
-                    value: 'Best selling',
+                    value: 'Featured',
                     items: const [
+                      DropdownMenuItem(value: 'Featured', child: Text('Featured')),
                       DropdownMenuItem(value: 'Best selling', child: Text('Best selling')),
-                      DropdownMenuItem(value: 'Price: Low to High', child: Text('Price: Low to High')),
-                      DropdownMenuItem(value: 'Price: High to Low', child: Text('Price: High to Low')),
+                      DropdownMenuItem(value: 'Alphabetically, A-Z', child: Text('Alphabetically, A-Z')),
+                      DropdownMenuItem(value: 'Alphabetically, Z-A', child: Text('Alphabetically, Z-A')),
+                      DropdownMenuItem(value: 'Price, low to high', child: Text('Price, low to high')),
+                      DropdownMenuItem(value: 'Price, high to low', child: Text('Price, high to low')),
+                      DropdownMenuItem(value: 'Date, old to new', child: Text('Date, old to new')),
+                      DropdownMenuItem(value: 'Date, new to old', child: Text('Date, new to old')),
                     ],
                     onChanged: (_) {},
                   ),
