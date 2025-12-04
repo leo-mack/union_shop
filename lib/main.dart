@@ -624,22 +624,338 @@ class HomeScreen extends StatelessWidget {
             ),
 
             // Footer
-            Container(
-              width: double.infinity,
-              color: Colors.grey[50],
-              padding: const EdgeInsets.all(24),
-              child: const Text(
-                'Placeholder Footer',
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
+            FooterSection(),
           ],
         ),
       ),
+    );
+  }
+}
+
+class FooterSection extends StatefulWidget {
+  const FooterSection({super.key});
+
+  @override
+  State<FooterSection> createState() => _FooterSectionState();
+}
+
+class _FooterSectionState extends State<FooterSection> {
+  final TextEditingController _emailController = TextEditingController();
+  bool _subscriptionSuccess = false;
+
+  void _validateAndSubscribe() {
+    final email = _emailController.text.trim();
+    final isValid = email.endsWith('@gmail.com') || email.endsWith('@myport.ac.uk');
+
+    if (isValid) {
+      setState(() {
+        _subscriptionSuccess = true;
+      });
+      _emailController.clear();
+      // Reset after 2 seconds
+      Future.delayed(const Duration(seconds: 2), () {
+        if (mounted) {
+          setState(() {
+            _subscriptionSuccess = false;
+          });
+        }
+      });
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please enter a valid email (@gmail.com or @myport.ac.uk)')),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      color: Colors.grey[50],
+      padding: const EdgeInsets.all(40),
+      child: Column(
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Opening Hours
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Opening Hours',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    const Text(
+                      '❄️ Winter Break Closure Dates ❄️',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    const Text(
+                      'Closing 4pm 19/12/2025',
+                      style: TextStyle(fontSize: 12, color: Colors.black),
+                    ),
+                    const Text(
+                      'Reopening 10am 05/01/2026',
+                      style: TextStyle(fontSize: 12, fontStyle: FontStyle.italic, color: Colors.black),
+                    ),
+                    const SizedBox(height: 8),
+                    const Text(
+                      'Last post date: 12pm on 18/12/2025',
+                      style: TextStyle(fontSize: 12, color: Colors.black),
+                    ),
+                    const SizedBox(height: 16),
+                    const Text(
+                      '------------------------',
+                      style: TextStyle(fontSize: 12, color: Colors.grey),
+                    ),
+                    const SizedBox(height: 12),
+                    const Text(
+                      '(Term Time)',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontStyle: FontStyle.italic,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    const Text(
+                      'Monday - Friday 10am - 4pm',
+                      style: TextStyle(fontSize: 12, color: Colors.black),
+                    ),
+                    const SizedBox(height: 12),
+                    const Text(
+                      '(Outside of Term Time / Consolidation Weeks)',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontStyle: FontStyle.italic,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    const Text(
+                      'Monday - Friday 10am - 3pm',
+                      style: TextStyle(fontSize: 12, color: Colors.black),
+                    ),
+                    const SizedBox(height: 8),
+                    const Text(
+                      'Purchase online 24/7',
+                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: Colors.black),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 40),
+              // Help and Information
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Help and Information',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    GestureDetector(
+                      onTap: () {},
+                      child: const Text(
+                        'Search',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    GestureDetector(
+                      onTap: () {},
+                      child: const Text(
+                        'Terms & Conditions of Sale Policy',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 40),
+              // Latest Offers / Newsletter
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Latest Offers',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    if (!_subscriptionSuccess)
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              controller: _emailController,
+                              decoration: InputDecoration(
+                                hintText: 'Email address',
+                                hintStyle: const TextStyle(color: Colors.grey),
+                                border: OutlineInputBorder(
+                                  borderSide: const BorderSide(color: Colors.grey),
+                                ),
+                                contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          ElevatedButton(
+                            onPressed: _validateAndSubscribe,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFF4d2963),
+                              foregroundColor: Colors.white,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.zero,
+                              ),
+                            ),
+                            child: const Text(
+                              'SUBSCRIBE',
+                              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                        ],
+                      )
+                    else
+                      Container(
+                        padding: const EdgeInsets.all(12),
+                        color: Colors.green[100],
+                        child: const Text(
+                          '✓ Thank you for subscribing!',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.green,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 40),
+          // Bottom footer with social icons on left and payment methods on right
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              // Social media buttons
+              Row(
+                children: [
+                  IconButton(
+                    icon: Image.network(
+                      'https://cdn-icons-png.flaticon.com/512/733/733547.png',
+                      width: 24,
+                      height: 24,
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Icon(Icons.facebook, size: 24, color: Colors.black);
+                      },
+                    ),
+                    onPressed: () {},
+                  ),
+                  IconButton(
+                    icon: Image.network(
+                      'https://cdn-icons-png.flaticon.com/512/733/733579.png',
+                      width: 24,
+                      height: 24,
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Icon(Icons.tag, size: 24, color: Colors.black);
+                      },
+                    ),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+              // Payment method logos
+              Wrap(
+                spacing: 12,
+                children: [
+                  _PaymentMethodLogo('Apple Pay', 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Apple_Pay_logo.svg/220px-Apple_Pay_logo.svg.png'),
+                  _PaymentMethodLogo('Diners', 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Diners_Club_Logo.svg/220px-Diners_Club_Logo.svg.png'),
+                  _PaymentMethodLogo('Discover', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Discover_Card_logo.svg/220px-Discover_Card_logo.svg.png'),
+                  _PaymentMethodLogo('Google Pay', 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Google_Pay_Logo.svg/220px-Google_Pay_Logo.svg.png'),
+                  _PaymentMethodLogo('Maestro', 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Maestro_logo.svg/220px-Maestro_logo.svg.png'),
+                  _PaymentMethodLogo('Mastercard', 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Mastercard_2019_logo.svg/220px-Mastercard_2019_logo.svg.png'),
+                  _PaymentMethodLogo('Shop Pay', 'https://cdn.shopify.com/s/files/1/0250/5902/8187/files/ShopPay_Logo.png'),
+                  _PaymentMethodLogo('Union Pay', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/UnionPay_logo.svg/220px-UnionPay_logo.svg.png'),
+                  _PaymentMethodLogo('Visa', 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/220px-Visa_Inc._logo.svg.png'),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          const Text(
+            '© 2025, upsu-store Powered by Shopify',
+            style: TextStyle(fontSize: 11, color: Colors.grey),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _PaymentMethodLogo extends StatelessWidget {
+  final String name;
+  final String logoUrl;
+
+  const _PaymentMethodLogo(this.name, this.logoUrl);
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.network(
+      logoUrl,
+      width: 45,
+      height: 28,
+      fit: BoxFit.contain,
+      errorBuilder: (context, error, stackTrace) {
+        return Container(
+          width: 45,
+          height: 28,
+          color: Colors.grey[300],
+          child: Center(
+            child: Text(
+              name,
+              style: const TextStyle(fontSize: 8),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
+      },
     );
   }
 }
