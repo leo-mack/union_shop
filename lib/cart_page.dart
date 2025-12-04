@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/main.dart' show FooterSection;
+import 'package:union_shop/cart_model.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
@@ -95,31 +96,124 @@ class CartPage extends StatelessWidget {
               ),
             ),
 
-            // Cart content
+            // Cart content (shows items when present)
             Container(
-              height: 360,
               color: Colors.white,
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'your cart is currently empty',
-                      style: TextStyle(fontSize: 18, color: Colors.black),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: () => Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF4d2963),
-                        foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+              child: ValueListenableBuilder<List<CartItem>>(
+                valueListenable: Cart.instance.itemsNotifier,
+                builder: (context, items, _) {
+                  if (items.isEmpty) {
+                    return SizedBox(
+                      height: 320,
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text(
+                              'your cart is currently empty',
+                              style: TextStyle(fontSize: 18, color: Colors.black),
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 20),
+                            ElevatedButton(
+                              onPressed: () => Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFF4d2963),
+                                foregroundColor: Colors.white,
+                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                              ),
+                              child: const Text('Continue Shopping'),
+                            ),
+                          ],
+                        ),
                       ),
-                      child: const Text('Continue Shopping'),
-                    ),
-                  ],
-                ),
+                    );
+                  }
+
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ...items.map((item) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 80,
+                                height: 80,
+                                color: Colors.grey[200],
+                                child: Image.network(item.imageUrl, fit: BoxFit.cover, errorBuilder: (c, e, s) => Container(color: Colors.grey[300])),
+                              ),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(item.title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                                    const SizedBox(height: 6),
+                                    Row(
+                                      children: [
+                                        IconButton(
+                                          icon: const Icon(Icons.remove_circle_outline),
+                                          onPressed: () {
+                                            final newQty = item.quantity - 1;
+                                            if (newQty < 1) {
+                                              Cart.instance.removeItem(item);
+                                            } else {
+                                              Cart.instance.updateQuantity(item, newQty);
+                                            }
+                                          },
+                                        ),
+                                        Text(item.quantity.toString(), style: const TextStyle(fontSize: 14)),
+                                        IconButton(
+                                          icon: const Icon(Icons.add_circle_outline),
+                                          onPressed: () => Cart.instance.updateQuantity(item, item.quantity + 1),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(width: 12),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text('£${(item.lineTotal).toStringAsFixed(2)}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                                  TextButton(
+                                    onPressed: () => Cart.instance.removeItem(item),
+                                    child: const Text('Remove', style: TextStyle(color: Colors.black)),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        );
+                      }).toList(),
+                      const SizedBox(height: 18),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Total', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: Colors.black)),
+                          Text('£${Cart.instance.total.toStringAsFixed(2)}', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: Colors.black)),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFF4d2963),
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(vertical: 14),
+                            ),
+                            child: const Text('CHECKOUT'),
+                          ),
+                      ),
+                    ],
+                  );
+                },
               ),
             ),
 

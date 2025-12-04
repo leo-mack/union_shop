@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/main.dart' show FooterSection;
+import 'package:union_shop/cart_model.dart';
 
 class ProductDetailPage extends StatefulWidget {
   final String title;
@@ -386,7 +387,18 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                               SizedBox(
                                 width: double.infinity,
                                 child: ElevatedButton(
-                                  onPressed: () {},
+                                    onPressed: () {
+                                      final item = CartItem(
+                                        title: widget.title,
+                                        price: widget.price,
+                                        imageUrl: widget.imageUrl,
+                                        quantity: _quantity,
+                                      );
+                                      Cart.instance.addItem(item);
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(content: Text('Added "${widget.title}" to cart')),
+                                      );
+                                    },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.white,
                                     foregroundColor: Colors.black,
