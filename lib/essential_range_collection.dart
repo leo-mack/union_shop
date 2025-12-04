@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:union_shop/main.dart' show FooterSection;
 
-class PortsmouthCityCollection extends StatelessWidget {
-  const PortsmouthCityCollection({super.key});
+class EssentialRangeCollection extends StatelessWidget {
+  const EssentialRangeCollection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -62,9 +63,7 @@ class PortsmouthCityCollection extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   TextButton(
-                                    onPressed: () {
-                                      Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
-                                    },
+                                    onPressed: () => Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false),
                                     child: const Text(
                                       'Home',
                                       style: TextStyle(
@@ -209,197 +208,131 @@ class PortsmouthCityCollection extends StatelessWidget {
                 ],
               ),
             ),
-            // Hero section with collection image
-            Container(
-              height: 300,
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(
-                    'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-                  ),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: Container(
-                color: Colors.black.withOpacity(0.3),
-                alignment: Alignment.center,
-                child: const Text(
-                  'Portsmouth City Collection',
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
 
-            // Collection description
-            Padding(
-              padding: const EdgeInsets.all(24.0),
+            // Collection Hero Banner
+            Container(
+              width: double.infinity,
+              color: Colors.grey[300],
+              padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 40),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Text(
-                    "We're excited to launch the Portsmouth City Collection",
+                    'Essential Range',
+                    style: TextStyle(
+                      fontSize: 36,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'Everyday wear, redefined.',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: Colors.black,
-                      height: 1.5,
                     ),
                   ),
-                  const SizedBox(height: 16),
-                  const Text(
-                    'This unique collection celebrates our vibrant city through Julia\'s iconic hand-drawn style - full of charm, character, and local landmarks that students and visitors alike will instantly recognise. From the Spinnaker Tower to The King\'s Theatre, each design captures the spirit of Portsmouth in bold lines and colourful detail.',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey,
-                      height: 1.6,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  const Text(
-                    'Available in postcards, magnets, bookmarks and water bottles, these items make perfect mementos, gifts, or affordable keepsakes – whether you\'re a new student, proud local, or just passing through.',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey,
-                      height: 1.6,
+                  const SizedBox(height: 12),
+                  const SizedBox(
+                    width: 800,
+                    child: Text(
+                      'The Essential Collection focuses on versatile must-haves designed for daily rotation. Clean lines, modern fits, and a fresh chest logo bring a contemporary edge to staple t-shirts. Easy to wear, easy to style - these are the essentials your wardrobe can\'t do without.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey,
+                        height: 1.6,
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
 
-            // Filter and sort options
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+            // Filters and sort
+            Container(
+              color: Colors.white,
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 24),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
                     'FILTER BY',
                     style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                   ),
-                  const SizedBox(width: 8),
+                  const SizedBox(width: 16),
                   DropdownButton<String>(
                     value: 'All products',
                     items: const [
                       DropdownMenuItem(value: 'All products', child: Text('All products')),
-                      DropdownMenuItem(value: 'Julia Gash', child: Text('Julia Gash')),
-                      DropdownMenuItem(value: 'Merchandise', child: Text('Merchandise')),
-                      DropdownMenuItem(value: 'Portsmouth City Collection', child: Text('Portsmouth City Collection')),
+                      DropdownMenuItem(value: 'Hoodies', child: Text('Hoodies')),
+                      DropdownMenuItem(value: 'T-Shirts', child: Text('T-Shirts')),
+                    ],
+                    onChanged: (_) {},
+                  ),
+                  const SizedBox(width: 48),
+                  const Text(
+                    'SORT BY',
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(width: 16),
+                  DropdownButton<String>(
+                    value: 'Best selling',
+                    items: const [
+                      DropdownMenuItem(value: 'Best selling', child: Text('Best selling')),
+                      DropdownMenuItem(value: 'Price: Low to High', child: Text('Price: Low to High')),
+                      DropdownMenuItem(value: 'Price: High to Low', child: Text('Price: High to Low')),
+                      DropdownMenuItem(value: 'Newest', child: Text('Newest')),
                     ],
                     onChanged: (_) {},
                   ),
                   const Spacer(),
                   const Text(
-                    'SORT BY',
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-                  ),
-                  const SizedBox(width: 8),
-                  DropdownButton<String>(
-                    value: 'Featured',
-                    items: const [
-                      DropdownMenuItem(value: 'Featured', child: Text('Featured')),
-                      DropdownMenuItem(value: 'Best selling', child: Text('Best selling')),
-                      DropdownMenuItem(value: 'Alphabetically, A-Z', child: Text('Alphabetically, A-Z')),
-                      DropdownMenuItem(value: 'Alphabetically, Z-A', child: Text('Alphabetically, Z-A')),
-                      DropdownMenuItem(value: 'Price, low to high', child: Text('Price, low to high')),
-                      DropdownMenuItem(value: 'Price, high to low', child: Text('Price, high to low')),
-                      DropdownMenuItem(value: 'Date, old to new', child: Text('Date, old to new')),
-                      DropdownMenuItem(value: 'Date, new to old', child: Text('Date, new to old')),
-                    ],
-                    onChanged: (_) {},
+                    '2 products',
+                    style: TextStyle(fontSize: 12, color: Colors.grey),
                   ),
                 ],
               ),
             ),
 
-            const Padding(
-              padding: EdgeInsets.only(right: 24.0, bottom: 16.0),
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  '7 products',
-                  style: TextStyle(fontSize: 14, color: Colors.grey),
+            // Products Grid
+            Container(
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(40.0),
+                child: GridView.count(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  crossAxisCount: MediaQuery.of(context).size.width > 900 ? 2 : 1,
+                  crossAxisSpacing: 40,
+                  mainAxisSpacing: 40,
+                  childAspectRatio: 0.75,
+                  children: const [
+                    _EssentialProductCard(
+                      title: 'Limited Edition Essential Zip Hoodies',
+                      price: '£16.00',
+                      originalPrice: '£20.00',
+                      imageUrl:
+                          'https://shop.upsu.net/cdn/shop/files/Pink_Essential_Hoodie_2a3589c2-096f-479f-ac60-d41e8a853d04_1024x1024@2x.jpg?v=1749131089',
+                      description: 'Limited edition Essential Zip Hoodie. Premium quality, comfortable fit. Part of our Essential Range with over 20% off!',
+                    ),
+                    _EssentialProductCard(
+                      title: 'Essential T-shirt',
+                      price: '£6.00',
+                      originalPrice: '£10.00',
+                      imageUrl:
+                          'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
+                      description: 'Classic Essential T-shirt in sage colour. Comfortable and versatile. Great value at just £6.00!',
+                    ),
+                  ],
                 ),
               ),
             ),
 
-            // Products grid
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-              child: GridView.count(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                crossAxisCount: MediaQuery.of(context).size.width > 600 ? 3 : 2,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 32,
-                childAspectRatio: 0.75,
-                children: const [
-                  _CollectionProductCard(
-                    title: 'Portsmouth City Magnet',
-                    price: '£4.50',
-                    originalPrice: '',
-                    imageUrl:
-                        'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-                    description: 'Bring a bit of Portsmouth pride to your fridge, locker, or pinboard with our eye-catching Portsmouth City Magnet, featuring the artwork of renowned illustrator Julia Gash.',
-                  ),
-                  _CollectionProductCard(
-                    title: 'Portsmouth City Postcard',
-                    price: '£1.00',
-                    originalPrice: '',
-                    imageUrl:
-                        'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
-                    description: 'Beautiful Portsmouth City Postcard featuring iconic landmarks. Share a piece of Portsmouth with friends and family.',
-                  ),
-                  _CollectionProductCard(
-                    title: 'Portsmouth City Bookmark',
-                    price: '£3.00',
-                    originalPrice: '',
-                    imageUrl:
-                        'https://shop.upsu.net/cdn/shop/files/PortsmouthCityBookmark1_1024x1024@2x.jpg?v=1752230004',
-                    description: 'Portsmouth City Bookmark. Perfect for keeping your place while reading. A charming souvenir of Portsmouth.',
-                  ),
-                  _CollectionProductCard(
-                    title: 'Portsmouth City Keyring',
-                    price: '£6.75',
-                    originalPrice: '',
-                    imageUrl:
-                        'https://shop.upsu.net/cdn/shop/files/PortsmouthCityKeyring_1024x1024@2x.jpg?v=1757419192',
-                    description: 'Portsmouth City Keyring. A durable and stylish accessory featuring beautiful Portsmouth-inspired design.',
-                  ),
-                  _CollectionProductCard(
-                    title: 'Portsmouth City Notebook',
-                    price: '£7.50',
-                    originalPrice: '',
-                    imageUrl:
-                        'https://shop.upsu.net/cdn/shop/files/PortsmouthCityNotebook_1024x1024@2x.jpg?v=1757419192',
-                    description: 'Portsmouth City Notebook. Perfect for writing, studying, or journaling. A stylish Portsmouth souvenir.',
-                  ),
-                  _CollectionProductCard(
-                    title: 'Portsmouth City Coaster',
-                    price: '£4.50',
-                    originalPrice: '',
-                    imageUrl:
-                        'https://shop.upsu.net/cdn/shop/files/PortsmouthCityCoaster_1024x1024@2x.jpg?v=1757419192',
-                    description: 'Portsmouth City Coaster. Protect your furniture while displaying Portsmouth pride. Set of durable coasters.',
-                  ),
-                  _CollectionProductCard(
-                    title: 'Portsmouth City Water Bottle',
-                    price: '£12.00',
-                    originalPrice: '',
-                    imageUrl:
-                        'https://shop.upsu.net/cdn/shop/files/PortsmouthCityWaterBottle5_1024x1024@2x.jpg?v=1755251995',
-                    description: 'Portsmouth City Water Bottle. Keep hydrated in style with this eco-friendly water bottle featuring Portsmouth design.',
-                  ),
-                ],
-              ),
-            ),
-
-            const SizedBox(height: 32),
+            // Footer
+            const FooterSection(),
           ],
         ),
       ),
@@ -407,19 +340,19 @@ class PortsmouthCityCollection extends StatelessWidget {
   }
 }
 
-class _CollectionProductCard extends StatelessWidget {
+class _EssentialProductCard extends StatelessWidget {
   final String title;
   final String price;
   final String originalPrice;
   final String imageUrl;
   final String description;
 
-  const _CollectionProductCard({
+  const _EssentialProductCard({
     required this.title,
     required this.price,
+    required this.originalPrice,
     required this.imageUrl,
-    this.originalPrice = '',
-    this.description = 'Premium quality product from the Portsmouth City Collection.',
+    required this.description,
   });
 
   @override
@@ -450,20 +383,19 @@ class _CollectionProductCard extends StatelessWidget {
                   color: Colors.grey[300],
                   child: const Center(
                     child: Icon(Icons.image_not_supported, color: Colors.grey),
-                ),
-              );
-            },
+                  ),
+                );
+              },
+            ),
           ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          title,
-          style: const TextStyle(fontSize: 14, color: Colors.black),
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
-        const SizedBox(height: 4),
-        if (originalPrice.isNotEmpty)
+          const SizedBox(height: 12),
+          Text(
+            title,
+            style: const TextStyle(fontSize: 14, color: Colors.black),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const SizedBox(height: 8),
           Row(
             children: [
               Text(
@@ -484,14 +416,9 @@ class _CollectionProductCard extends StatelessWidget {
                 ),
               ),
             ],
-          )
-        else
-          Text(
-            price,
-            style: const TextStyle(fontSize: 13, color: Colors.black),
           ),
-          ],
-        ),
-      );
+        ],
+      ),
+    );
   }
 }

@@ -4,6 +4,7 @@ import 'package:union_shop/main.dart' show FooterSection;
 class ProductDetailPage extends StatefulWidget {
   final String title;
   final String price;
+  final String originalPrice;
   final String imageUrl;
   final String description;
 
@@ -13,6 +14,7 @@ class ProductDetailPage extends StatefulWidget {
     required this.price,
     required this.imageUrl,
     required this.description,
+    this.originalPrice = '',
   });
 
   @override
@@ -307,14 +309,37 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 ),
                               ),
                               const SizedBox(height: 16),
-                              Text(
-                                widget.price,
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
+                              if (widget.originalPrice.isNotEmpty)
+                                Row(
+                                  children: [
+                                    Text(
+                                      widget.originalPrice,
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.grey,
+                                        decoration: TextDecoration.lineThrough,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 12),
+                                    Text(
+                                      widget.price,
+                                      style: const TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              else
+                                Text(
+                                  widget.price,
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
                                 ),
-                              ),
                               const SizedBox(height: 8),
                               const Text(
                                 'Tax included.',

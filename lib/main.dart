@@ -4,6 +4,7 @@ import 'package:union_shop/product_page.dart';
 import 'package:union_shop/portsmouth_city_collection.dart';
 import 'package:union_shop/login_page.dart';
 import 'package:union_shop/product_detail_page.dart';
+import 'package:union_shop/essential_range_collection.dart';
 
 void main() {
   runApp(const UnionShopApp());
@@ -28,6 +29,7 @@ class UnionShopApp extends StatelessWidget {
       routes: {
         '/product': (context) => const ProductPage(),
         '/collections/portsmouth-city': (context) => const PortsmouthCityCollection(),
+        '/collections/essential-range': (context) => const EssentialRangeCollection(),
         '/login': (context) => const LoginPage(),
       },
       onGenerateRoute: (settings) {
@@ -39,6 +41,7 @@ class UnionShopApp extends StatelessWidget {
               price: args?['price'] ?? '£0.00',
               imageUrl: args?['imageUrl'] ?? '',
               description: args?['description'] ?? '',
+              originalPrice: args?['originalPrice'] ?? '',
             ),
           );
         }
@@ -196,7 +199,14 @@ class _HeroCarouselState extends State<HeroCarousel> {
                 ),
                 const SizedBox(height: 32),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // Navigate based on current slide
+                    if (_current == 0) {
+                      Navigator.pushNamed(context, '/collections/essential-range');
+                    } else if (_current == 1) {
+                      Navigator.pushNamed(context, '/collections/the-print-shack');
+                    }
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF4d2963),
                     foregroundColor: Colors.white,
@@ -519,17 +529,19 @@ class HomeScreen extends StatelessWidget {
                       children: const [
                         ProductCard(
                           title: 'Limited Edition Essential Zip Hoodies',
-                          price: '£20.00',
+                          price: '£16.00',
+                          originalPrice: '£20.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/Pink_Essential_Hoodie_2a3589c2-096f-479f-ac60-d41e8a853d04_1024x1024@2x.jpg?v=1749131089',
                           description: 'Limited edition Essential Zip Hoodie. Premium quality, comfortable fit. Part of our Essential Range with over 20% off!',
                         ),
                         ProductCard(
                           title: 'Essential T-shirt',
-                          price: '£6.99',
+                          price: '£6.00',
+                          originalPrice: '£10.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
-                          description: 'Classic Essential T-shirt in sage colour. Comfortable and versatile. Great value at just £6.99!',
+                          description: 'Classic Essential T-shirt in sage colour. Comfortable and versatile. Great value at just £6.00!',
                         ),
                       ],
                     ),
@@ -565,6 +577,7 @@ class HomeScreen extends StatelessWidget {
                         ProductCard(
                           title: 'Signature Hoodie',
                           price: '£32.99',
+                          originalPrice: '',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/SageHoodie_1024x1024@2x.png?v=1745583498',
                           description: 'Premium Signature Hoodie in sage colour. Perfect for any season. Quality crafted for maximum comfort and durability.',
@@ -572,6 +585,7 @@ class HomeScreen extends StatelessWidget {
                         ProductCard(
                           title: 'Signature T-Shirt',
                           price: '£14.99',
+                          originalPrice: '',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/Signature_T-Shirt_Indigo_Blue_2_1024x1024@2x.jpg?v=1758290534',
                           description: 'Signature T-Shirt in indigo blue. High quality fabric with a classic design. A wardrobe staple from the Union Shop.',
@@ -610,6 +624,7 @@ class HomeScreen extends StatelessWidget {
                         ProductCard(
                           title: 'Portsmouth City Postcard',
                           price: '£1.00',
+                          originalPrice: '',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
                           description: 'Beautiful Portsmouth City Postcard featuring iconic landmarks. Share a piece of Portsmouth with friends and family.',
@@ -617,6 +632,7 @@ class HomeScreen extends StatelessWidget {
                         ProductCard(
                           title: 'Portsmouth City Magnet',
                           price: '£4.50',
+                          originalPrice: '',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
                           description: 'Bring a bit of Portsmouth pride to your fridge, locker, or pinboard with our eye-catching Portsmouth City Magnet, featuring the artwork of renowned illustrator Julia Gash.',
@@ -624,6 +640,7 @@ class HomeScreen extends StatelessWidget {
                         ProductCard(
                           title: 'Portsmouth City Bookmark',
                           price: '£3.00',
+                          originalPrice: '',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityBookmark1_1024x1024@2x.jpg?v=1752230004',
                           description: 'Portsmouth City Bookmark. Perfect for keeping your place while reading. A charming souvenir of Portsmouth.',
@@ -631,6 +648,7 @@ class HomeScreen extends StatelessWidget {
                         ProductCard(
                           title: 'Portsmouth City Keyring',
                           price: '£6.75',
+                          originalPrice: '',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityKeyring_1024x1024@2x.jpg?v=1757419192',
                           description: 'Portsmouth City Keyring. A durable and stylish accessory featuring beautiful Portsmouth-inspired design.',
@@ -997,6 +1015,7 @@ class _PaymentMethodLogo extends StatelessWidget {
 class ProductCard extends StatelessWidget {
   final String title;
   final String price;
+  final String originalPrice;
   final String imageUrl;
   final String description;
 
@@ -1005,6 +1024,7 @@ class ProductCard extends StatelessWidget {
     required this.title,
     required this.price,
     required this.imageUrl,
+    this.originalPrice = '',
     this.description = 'Premium quality product from the Union Shop.',
   });
 
@@ -1018,6 +1038,7 @@ class ProductCard extends StatelessWidget {
           arguments: {
             'title': title,
             'price': price,
+            'originalPrice': originalPrice,
             'imageUrl': imageUrl,
             'description': description,
           },
@@ -1050,10 +1071,29 @@ class ProductCard extends StatelessWidget {
                 maxLines: 2,
               ),
               const SizedBox(height: 4),
-              Text(
-                price,
-                style: const TextStyle(fontSize: 13, color: Colors.grey),
-              ),
+              if (originalPrice.isNotEmpty)
+                Row(
+                  children: [
+                    Text(
+                      originalPrice,
+                      style: const TextStyle(
+                        fontSize: 13,
+                        color: Colors.grey,
+                        decoration: TextDecoration.lineThrough,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      price,
+                      style: const TextStyle(fontSize: 13, color: Colors.blue, fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                )
+              else
+                Text(
+                  price,
+                  style: const TextStyle(fontSize: 13, color: Colors.grey),
+                ),
             ],
           ),
         ],
