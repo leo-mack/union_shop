@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:union_shop/product_page.dart';
 import 'package:union_shop/portsmouth_city_collection.dart';
 import 'package:union_shop/login_page.dart';
+import 'package:union_shop/product_detail_page.dart';
 
 void main() {
   runApp(const UnionShopApp());
@@ -28,6 +29,20 @@ class UnionShopApp extends StatelessWidget {
         '/product': (context) => const ProductPage(),
         '/collections/portsmouth-city': (context) => const PortsmouthCityCollection(),
         '/login': (context) => const LoginPage(),
+      },
+      onGenerateRoute: (settings) {
+        if (settings.name == '/product-detail') {
+          final args = settings.arguments as Map<String, String>?;
+          return MaterialPageRoute(
+            builder: (context) => ProductDetailPage(
+              title: args?['title'] ?? 'Product',
+              price: args?['price'] ?? '£0.00',
+              imageUrl: args?['imageUrl'] ?? '',
+              description: args?['description'] ?? '',
+            ),
+          );
+        }
+        return null;
       },
     );
   }
@@ -507,12 +522,14 @@ class HomeScreen extends StatelessWidget {
                           price: '£20.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/Pink_Essential_Hoodie_2a3589c2-096f-479f-ac60-d41e8a853d04_1024x1024@2x.jpg?v=1749131089',
+                          description: 'Limited edition Essential Zip Hoodie. Premium quality, comfortable fit. Part of our Essential Range with over 20% off!',
                         ),
                         ProductCard(
                           title: 'Essential T-shirt',
                           price: '£6.99',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
+                          description: 'Classic Essential T-shirt in sage colour. Comfortable and versatile. Great value at just £6.99!',
                         ),
                       ],
                     ),
@@ -550,12 +567,14 @@ class HomeScreen extends StatelessWidget {
                           price: '£32.99',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/SageHoodie_1024x1024@2x.png?v=1745583498',
+                          description: 'Premium Signature Hoodie in sage colour. Perfect for any season. Quality crafted for maximum comfort and durability.',
                         ),
                         ProductCard(
                           title: 'Signature T-Shirt',
                           price: '£14.99',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/Signature_T-Shirt_Indigo_Blue_2_1024x1024@2x.jpg?v=1758290534',
+                          description: 'Signature T-Shirt in indigo blue. High quality fabric with a classic design. A wardrobe staple from the Union Shop.',
                         ),
                       ],
                     ),
@@ -593,24 +612,28 @@ class HomeScreen extends StatelessWidget {
                           price: '£1.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
+                          description: 'Beautiful Portsmouth City Postcard featuring iconic landmarks. Share a piece of Portsmouth with friends and family.',
                         ),
                         ProductCard(
                           title: 'Portsmouth City Magnet',
                           price: '£4.50',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                          description: 'Bring a bit of Portsmouth pride to your fridge, locker, or pinboard with our eye-catching Portsmouth City Magnet, featuring the artwork of renowned illustrator Julia Gash.',
                         ),
                         ProductCard(
                           title: 'Portsmouth City Bookmark',
                           price: '£3.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityBookmark1_1024x1024@2x.jpg?v=1752230004',
+                          description: 'Portsmouth City Bookmark. Perfect for keeping your place while reading. A charming souvenir of Portsmouth.',
                         ),
                         ProductCard(
                           title: 'Portsmouth City Keyring',
                           price: '£6.75',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityKeyring_1024x1024@2x.jpg?v=1757419192',
+                          description: 'Portsmouth City Keyring. A durable and stylish accessory featuring beautiful Portsmouth-inspired design.',
                         ),
                       ],
                     ),
@@ -975,19 +998,30 @@ class ProductCard extends StatelessWidget {
   final String title;
   final String price;
   final String imageUrl;
+  final String description;
 
   const ProductCard({
     super.key,
     required this.title,
     required this.price,
     required this.imageUrl,
+    this.description = 'Premium quality product from the Union Shop.',
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/product');
+        Navigator.pushNamed(
+          context,
+          '/product-detail',
+          arguments: {
+            'title': title,
+            'price': price,
+            'imageUrl': imageUrl,
+            'description': description,
+          },
+        );
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

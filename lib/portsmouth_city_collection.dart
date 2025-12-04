@@ -344,42 +344,49 @@ class PortsmouthCityCollection extends StatelessWidget {
                     price: '£4.50',
                     imageUrl:
                         'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                    description: 'Bring a bit of Portsmouth pride to your fridge, locker, or pinboard with our eye-catching Portsmouth City Magnet, featuring the artwork of renowned illustrator Julia Gash.',
                   ),
                   _CollectionProductCard(
                     title: 'Portsmouth City Postcard',
                     price: '£1.00',
                     imageUrl:
                         'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
+                    description: 'Beautiful Portsmouth City Postcard featuring iconic landmarks. Share a piece of Portsmouth with friends and family.',
                   ),
                   _CollectionProductCard(
                     title: 'Portsmouth City Bookmark',
                     price: '£3.00',
                     imageUrl:
                         'https://shop.upsu.net/cdn/shop/files/PortsmouthCityBookmark1_1024x1024@2x.jpg?v=1752230004',
+                    description: 'Portsmouth City Bookmark. Perfect for keeping your place while reading. A charming souvenir of Portsmouth.',
                   ),
                   _CollectionProductCard(
                     title: 'Portsmouth City Keyring',
                     price: '£6.75',
                     imageUrl:
                         'https://shop.upsu.net/cdn/shop/files/PortsmouthCityKeyring_1024x1024@2x.jpg?v=1757419192',
+                    description: 'Portsmouth City Keyring. A durable and stylish accessory featuring beautiful Portsmouth-inspired design.',
                   ),
                   _CollectionProductCard(
                     title: 'Portsmouth City Notebook',
                     price: '£7.50',
                     imageUrl:
                         'https://shop.upsu.net/cdn/shop/files/PortsmouthCityNotebook_1024x1024@2x.jpg?v=1757419192',
+                    description: 'Portsmouth City Notebook. Perfect for writing, studying, or journaling. A stylish Portsmouth souvenir.',
                   ),
                   _CollectionProductCard(
                     title: 'Portsmouth City Coaster',
                     price: '£4.50',
                     imageUrl:
                         'https://shop.upsu.net/cdn/shop/files/PortsmouthCityCoaster_1024x1024@2x.jpg?v=1757419192',
+                    description: 'Portsmouth City Coaster. Protect your furniture while displaying Portsmouth pride. Set of durable coasters.',
                   ),
                   _CollectionProductCard(
                     title: 'Portsmouth City Water Bottle',
                     price: '£12.00',
                     imageUrl:
                         'https://shop.upsu.net/cdn/shop/files/PortsmouthCityWaterBottle5_1024x1024@2x.jpg?v=1755251995',
+                    description: 'Portsmouth City Water Bottle. Keep hydrated in style with this eco-friendly water bottle featuring Portsmouth design.',
                   ),
                 ],
               ),
@@ -397,27 +404,42 @@ class _CollectionProductCard extends StatelessWidget {
   final String title;
   final String price;
   final String imageUrl;
+  final String description;
 
   const _CollectionProductCard({
     required this.title,
     required this.price,
     required this.imageUrl,
+    this.description = 'Premium quality product from the Portsmouth City Collection.',
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(
-          child: Image.network(
-            imageUrl,
-            fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) {
-              return Container(
-                color: Colors.grey[300],
-                child: const Center(
-                  child: Icon(Icons.image_not_supported, color: Colors.grey),
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(
+          context,
+          '/product-detail',
+          arguments: {
+            'title': title,
+            'price': price,
+            'imageUrl': imageUrl,
+            'description': description,
+          },
+        );
+      },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Image.network(
+              imageUrl,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                return Container(
+                  color: Colors.grey[300],
+                  child: const Center(
+                    child: Icon(Icons.image_not_supported, color: Colors.grey),
                 ),
               );
             },
@@ -435,7 +457,8 @@ class _CollectionProductCard extends StatelessWidget {
           price,
           style: const TextStyle(fontSize: 13, color: Colors.black),
         ),
-      ],
-    );
+          ],
+        ),
+      );
   }
 }
