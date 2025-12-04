@@ -1,0 +1,245 @@
+import 'package:flutter/material.dart';
+
+class PortsmouthCityCollection extends StatelessWidget {
+  const PortsmouthCityCollection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: const Text(
+          'Portsmouth City Collection',
+          style: TextStyle(color: Colors.black, fontSize: 18),
+        ),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Hero section with collection image
+            Container(
+              height: 300,
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(
+                    'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                  ),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: Container(
+                color: Colors.black.withOpacity(0.3),
+                alignment: Alignment.center,
+                child: const Text(
+                  'Portsmouth City Collection',
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+
+            // Collection description
+            Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "We're excited to launch the Portsmouth City Collection",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                      height: 1.5,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'This unique collection celebrates our vibrant city through Julia\'s iconic hand-drawn style - full of charm, character, and local landmarks that students and visitors alike will instantly recognise. From the Spinnaker Tower to The King\'s Theatre, each design captures the spirit of Portsmouth in bold lines and colourful detail.',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey,
+                      height: 1.6,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'Available in postcards, magnets, bookmarks and water bottles, these items make perfect mementos, gifts, or affordable keepsakes – whether you\'re a new student, proud local, or just passing through.',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey,
+                      height: 1.6,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // Filter and sort options
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+              child: Row(
+                children: [
+                  const Text(
+                    'FILTER BY',
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(width: 8),
+                  DropdownButton<String>(
+                    value: 'All products',
+                    items: const [
+                      DropdownMenuItem(value: 'All products', child: Text('All products')),
+                      DropdownMenuItem(value: 'Postcards', child: Text('Postcards')),
+                      DropdownMenuItem(value: 'Magnets', child: Text('Magnets')),
+                      DropdownMenuItem(value: 'Bookmarks', child: Text('Bookmarks')),
+                    ],
+                    onChanged: (_) {},
+                  ),
+                  const Spacer(),
+                  const Text(
+                    'SORT BY',
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(width: 8),
+                  DropdownButton<String>(
+                    value: 'Best selling',
+                    items: const [
+                      DropdownMenuItem(value: 'Best selling', child: Text('Best selling')),
+                      DropdownMenuItem(value: 'Price: Low to High', child: Text('Price: Low to High')),
+                      DropdownMenuItem(value: 'Price: High to Low', child: Text('Price: High to Low')),
+                    ],
+                    onChanged: (_) {},
+                  ),
+                ],
+              ),
+            ),
+
+            const Padding(
+              padding: EdgeInsets.only(right: 24.0, bottom: 16.0),
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  '7 products',
+                  style: TextStyle(fontSize: 14, color: Colors.grey),
+                ),
+              ),
+            ),
+
+            // Products grid
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+              child: GridView.count(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                crossAxisCount: MediaQuery.of(context).size.width > 600 ? 3 : 2,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 32,
+                childAspectRatio: 0.75,
+                children: const [
+                  _CollectionProductCard(
+                    title: 'Portsmouth City Magnet',
+                    price: '£4.50',
+                    imageUrl:
+                        'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                  ),
+                  _CollectionProductCard(
+                    title: 'Portsmouth City Postcard',
+                    price: '£1.00',
+                    imageUrl:
+                        'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
+                  ),
+                  _CollectionProductCard(
+                    title: 'Portsmouth City Bookmark',
+                    price: '£3.00',
+                    imageUrl:
+                        'https://shop.upsu.net/cdn/shop/files/PortsmouthCityBookmark1_1024x1024@2x.jpg?v=1752230004',
+                  ),
+                  _CollectionProductCard(
+                    title: 'Portsmouth City Keyring',
+                    price: '£6.75',
+                    imageUrl:
+                        'https://shop.upsu.net/cdn/shop/files/PortsmouthCityKeyring_1024x1024@2x.jpg?v=1757419192',
+                  ),
+                  _CollectionProductCard(
+                    title: 'Portsmouth City Notebook',
+                    price: '£7.50',
+                    imageUrl:
+                        'https://shop.upsu.net/cdn/shop/files/PortsmouthCityNotebook_1024x1024@2x.jpg?v=1757419192',
+                  ),
+                  _CollectionProductCard(
+                    title: 'Portsmouth City Coaster',
+                    price: '£4.50',
+                    imageUrl:
+                        'https://shop.upsu.net/cdn/shop/files/PortsmouthCityCoaster_1024x1024@2x.jpg?v=1757419192',
+                  ),
+                  _CollectionProductCard(
+                    title: 'Portsmouth City',
+                    price: '£12.00',
+                    imageUrl:
+                        'https://shop.upsu.net/cdn/shop/files/PortsmouthCityNotebook_1024x1024@2x.jpg?v=1757419192',
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 32),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _CollectionProductCard extends StatelessWidget {
+  final String title;
+  final String price;
+  final String imageUrl;
+
+  const _CollectionProductCard({
+    required this.title,
+    required this.price,
+    required this.imageUrl,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: Image.network(
+            imageUrl,
+            fit: BoxFit.cover,
+            errorBuilder: (context, error, stackTrace) {
+              return Container(
+                color: Colors.grey[300],
+                child: const Center(
+                  child: Icon(Icons.image_not_supported, color: Colors.grey),
+                ),
+              );
+            },
+          ),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          title,
+          style: const TextStyle(fontSize: 14, color: Colors.black),
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+        ),
+        const SizedBox(height: 4),
+        Text(
+          price,
+          style: const TextStyle(fontSize: 13, color: Colors.black),
+        ),
+      ],
+    );
+  }
+}
