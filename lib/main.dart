@@ -321,79 +321,101 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           const Spacer(),
-                          // Navigation bar: 4 buttons centered
-                          Row(
+                          // Navigation bar: 4 buttons centered (with About below)
+                          Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              TextButton(
-                                onPressed: placeholderCallbackForButtons,
-                                child: const Text(
-                                  'Shop',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(width: 12),
-                              // Collections with dropdown
-                              PopupMenuButton<String>(
-                                onSelected: (value) => placeholderCallbackForButtons(),
-                                itemBuilder: (context) => const [
-                                  PopupMenuItem(value: 'clothing', child: Text('Clothing')),
-                                  PopupMenuItem(value: 'merchandise', child: Text('Merchandise')),
-                                  PopupMenuItem(value: 'halloween', child: Text('Halloween 🎃')),
-                                ],
-                                child: Row(
-                                  children: const [
-                                    Text(
-                                      'Shop',
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  TextButton(
+                                    onPressed: () => navigateToHome(context),
+                                    child: const Text(
+                                      'Home',
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 14,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
-                                    SizedBox(width: 4),
-                                    Icon(Icons.arrow_drop_down, color: Colors.black),
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(width: 12),
-                              // About with dropdown
-                              PopupMenuButton<String>(
-                                onSelected: (value) => placeholderCallbackForButtons(),
-                                itemBuilder: (context) => const [
-                                  PopupMenuItem(value: 'about', child: Text('About')),
-                                  PopupMenuItem(value: 'personalisation', child: Text('Personalisation')),
-                                ],
-                                child: Row(
-                                  children: const [
-                                    Text(
-                                      'The Print Shack',
+                                  ),
+                                  const SizedBox(width: 12),
+                                  // Shop with dropdown
+                                  PopupMenuButton<String>(
+                                    onSelected: (value) => placeholderCallbackForButtons(),
+                                    itemBuilder: (context) => const [
+                                      PopupMenuItem(value: 'clothing', child: Text('Clothing')),
+                                      PopupMenuItem(value: 'merchandise', child: Text('Merchandise')),
+                                      PopupMenuItem(value: 'halloween', child: Text('Halloween 🎃')),
+                                    ],
+                                    child: Row(
+                                      children: const [
+                                        Text(
+                                          'Shop',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                        SizedBox(width: 4),
+                                        Icon(Icons.arrow_drop_down, color: Colors.black),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(width: 12),
+                                  // The Print Shack with dropdown
+                                  PopupMenuButton<String>(
+                                    onSelected: (value) => placeholderCallbackForButtons(),
+                                    itemBuilder: (context) => const [
+                                      PopupMenuItem(value: 'about', child: Text('About')),
+                                      PopupMenuItem(value: 'personalisation', child: Text('Personalisation')),
+                                    ],
+                                    child: Row(
+                                      children: const [
+                                        Text(
+                                          'The Print Shack',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                        SizedBox(width: 4),
+                                        Icon(Icons.arrow_drop_down, color: Colors.black),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(width: 12),
+                                  TextButton(
+                                    onPressed: placeholderCallbackForButtons,
+                                    child: const Text(
+                                      'Sale',
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 14,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
-                                    SizedBox(width: 4),
-                                    Icon(Icons.arrow_drop_down, color: Colors.black),
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(width: 12),
-                              TextButton(
-                                onPressed: placeholderCallbackForButtons,
-                                child: const Text(
-                                  'Contact',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
                                   ),
-                                ),
+                                ],
+                              ),
+                              const SizedBox(height: 6),
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  TextButton(
+                                    onPressed: placeholderCallbackForButtons,
+                                    child: const Text(
+                                      'About',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
