@@ -66,7 +66,7 @@ class CartPage extends StatelessWidget {
                                 ],
                               ),
                               const SizedBox(height: 6),
-                              Row(mainAxisSize: MainAxisSize.min, children: [TextButton(onPressed: () {}, child: const Text('About', style: TextStyle(color: Colors.black)))]),
+                              Row(mainAxisSize: MainAxisSize.min, children: [TextButton(onPressed: () => Navigator.pushNamed(context, '/about'), child: const Text('About', style: TextStyle(color: Colors.black)))]),
                             ],
                           ),
                           const Spacer(),

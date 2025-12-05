@@ -160,7 +160,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   TextButton(
-                                    onPressed: () {},
+                                    onPressed: () => Navigator.pushNamed(context, '/about'),
                                     child: const Text(
                                       'About',
                                       style: TextStyle(

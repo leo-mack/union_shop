@@ -6,6 +6,7 @@ import 'package:union_shop/login_page.dart';
 import 'package:union_shop/product_detail_page.dart';
 import 'package:union_shop/essential_range_collection.dart';
 import 'package:union_shop/cart_page.dart';
+import 'package:union_shop/about_page.dart';
 
 void main() {
   runApp(const UnionShopApp());
@@ -30,6 +31,7 @@ class UnionShopApp extends StatelessWidget {
       routes: {
         '/product': (context) => const ProductPage(),
         '/cart': (context) => const CartPage(),
+        '/about': (context) => const AboutPage(),
         '/collections/portsmouth-city': (context) => const PortsmouthCityCollection(),
         '/collections/essential-range': (context) => const EssentialRangeCollection(),
         '/login': (context) => const LoginPage(),
@@ -432,7 +434,7 @@ class HomeScreen extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   TextButton(
-                                    onPressed: placeholderCallbackForButtons,
+                                    onPressed: () => Navigator.pushNamed(context, '/about'),
                                     child: const Text(
                                       'About',
                                       style: TextStyle(
