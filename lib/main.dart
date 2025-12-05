@@ -375,7 +375,8 @@ class HomeScreen extends StatelessWidget {
                                     itemBuilder: (context) => const [
                                       PopupMenuItem(value: 'clothing', child: Text('Clothing')),
                                       PopupMenuItem(value: 'merchandise', child: Text('Merchandise')),
-                                      PopupMenuItem(value: 'halloween', child: Text('Halloween 🎃')),
+                                      PopupMenuItem(value: 'essential', child: Text('Signature and Essential Range')),
+                                      PopupMenuItem(value: 'portsmouth', child: Text('Portsmouth City Collection')),
                                     ],
                                     child: Row(
                                       children: const [
