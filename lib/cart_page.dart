@@ -196,9 +196,20 @@ class CartPage extends StatelessWidget {
                                                 children: [
                                                   Text(item.title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
                                                   const SizedBox(height: 6),
-                                                  Text('Color: ${item.color}', style: const TextStyle(fontSize: 12, color: Colors.grey)),
-                                                  const SizedBox(height: 4),
-                                                  Text('Size: ${item.size}', style: const TextStyle(fontSize: 12, color: Colors.grey)),
+                                                  if (item.personalisationLines.isNotEmpty) ...[
+                                                    Text('Lines: ${item.personalisationLines}', style: const TextStyle(fontSize: 12, color: Colors.grey)),
+                                                    const SizedBox(height: 4),
+                                                    ...item.personalisationText.asMap().entries.map((entry) => 
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(bottom: 4),
+                                                        child: Text('Line ${entry.key + 1}: ${entry.value}', style: const TextStyle(fontSize: 12, color: Colors.grey)),
+                                                      )
+                                                    ),
+                                                  ] else ...[
+                                                    Text('Color: ${item.color}', style: const TextStyle(fontSize: 12, color: Colors.grey)),
+                                                    const SizedBox(height: 4),
+                                                    Text('Size: ${item.size}', style: const TextStyle(fontSize: 12, color: Colors.grey)),
+                                                  ],
                                                   TextButton(onPressed: () => Cart.instance.removeItem(item), child: const Text('Remove', style: TextStyle(color: Color(0xFF4d2963)))),
                                                 ],
                                               ),

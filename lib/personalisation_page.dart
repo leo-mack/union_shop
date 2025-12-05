@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/main.dart' show FooterSection;
+import 'package:union_shop/cart_model.dart';
 
 class PersonalisationPage extends StatefulWidget {
   const PersonalisationPage({super.key});
@@ -9,14 +10,44 @@ class PersonalisationPage extends StatefulWidget {
 }
 
 class _PersonalisationPageState extends State<PersonalisationPage> {
-  String _selectedLines = 'One Line of Text';
-  final TextEditingController _personalisationController = TextEditingController();
+  int _selectedLines = 1;
+  final List<TextEditingController> _personalisationControllers = [
+    TextEditingController(),
+    TextEditingController(),
+    TextEditingController(),
+    TextEditingController(),
+  ];
   int _quantity = 1;
 
   @override
   void dispose() {
-    _personalisationController.dispose();
+    for (var controller in _personalisationControllers) {
+      controller.dispose();
+    }
     super.dispose();
+  }
+
+  void _addToCart() {
+    final personalisationText = _personalisationControllers
+        .take(_selectedLines)
+        .map((c) => c.text)
+        .toList();
+
+    final item = CartItem(
+      title: 'Personalisation',
+      price: _selectedLines == 1 ? '£3.00' : '£5.00',
+      imageUrl: 'https://shop.upsu.net/cdn/shop/products/Personalised_Image_1024x1024@2x.jpg?v=1562949869',
+      color: '',
+      size: '',
+      personalisationLines: _selectedLines == 1 ? 'One Line of Text' : '$_selectedLines Lines of Text',
+      personalisationText: personalisationText,
+      quantity: _quantity,
+    );
+
+    Cart.instance.addItem(item);
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Added to cart!')),
+    );
   }
 
   @override
@@ -181,29 +212,45 @@ class _PersonalisationPageState extends State<PersonalisationPage> {
                       children: [
                         const Text('Personalisation', style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black)),
                         const SizedBox(height: 16),
-                        const Text('£3.00', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.black)),
+                        Text(
+                          _selectedLines == 1 ? '£3.00' : '£5.00',
+                          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.black),
+                        ),
                         const SizedBox(height: 4),
                         const Text('Tax included.', style: TextStyle(fontSize: 14, color: Colors.grey)),
                         const SizedBox(height: 28),
-                        const Text('Per Line: One Line of Text', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.black)),
+                        const Text('Number of Lines:', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.black)),
                         const SizedBox(height: 8),
-                        DropdownButtonFormField<String>(
+                        DropdownButtonFormField<int>(
                           value: _selectedLines,
                           decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(0)), contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12)),
                           items: const [
-                            DropdownMenuItem(value: 'One Line of Text', child: Text('One Line of Text')),
-                            DropdownMenuItem(value: 'Two Lines of Text', child: Text('Two Lines of Text')),
+                            DropdownMenuItem(value: 1, child: Text('1 Line of Text')),
+                            DropdownMenuItem(value: 2, child: Text('2 Lines of Text')),
+                            DropdownMenuItem(value: 3, child: Text('3 Lines of Text')),
+                            DropdownMenuItem(value: 4, child: Text('4 Lines of Text')),
                           ],
-                          onChanged: (String? val) => setState(() => _selectedLines = val ?? 'One Line of Text'),
+                          onChanged: (int? val) => setState(() => _selectedLines = val ?? 1),
                         ),
                         const SizedBox(height: 28),
-                        const Text('Personalisation Line 1:', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.black)),
-                        const SizedBox(height: 8),
-                        TextFormField(
-                          controller: _personalisationController,
-                          decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(0)), contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12)),
-                        ),
-                        const SizedBox(height: 28),
+                        ...List.generate(_selectedLines, (index) => Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Personalisation Line ${index + 1}:',
+                              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.black),
+                            ),
+                            const SizedBox(height: 8),
+                            TextFormField(
+                              controller: _personalisationControllers[index],
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(borderRadius: BorderRadius.circular(0)),
+                                contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                              ),
+                            ),
+                            const SizedBox(height: 28),
+                          ],
+                        )),
                         const Text('Quantity', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.black)),
                         const SizedBox(height: 8),
                         SizedBox(
@@ -219,7 +266,7 @@ class _PersonalisationPageState extends State<PersonalisationPage> {
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: _addToCart,
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
                               foregroundColor: Colors.black,
