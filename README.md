@@ -1,395 +1,184 @@
-# Union Shop - University of Portsmouth Students' Union Store
+# Union Shop
 
-A  Flutter e-commerce application developed as coursework for the University of Portsmouth Students' Union online store. This application provides a full on shopping experience with product browsing, cart management, personalisation services, and multiple product collections.
+A Flutter e-commerce app I built for my coursework project. It's an online store for the University of Portsmouth Students' Union where you can browse products, manage a shopping cart, and even personalise items with custom text.
 
-##  Table of Contents
+## What This App Does
 
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Technical Implementation](#technical-implementation)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Pages Overview](#pages-overview)
-- [State Management](#state-management)
-- [Testing](#testing)
-- [Future Enhancements](#future-enhancements)
+I created a working online shop with these main features:
+- Browse products organized into collections (Signature & Essential Range, Portsmouth City Collection)
+- View individual product pages where you can pick colors and sizes
+- Add items to your cart and manage quantities
+- Customise products with 1-4 lines of text (costs £3 for 1 line, £5 for 2+ lines)
+- See sale items with discounted prices
+- Navigate between different pages using dropdown menus
 
-##  Features
+## Key Features
 
-### Core E-Commerce Functionality
-- **Product Browsing**: View products organized by collections
-- **Product Details**: Detailed product pages with color and size selection
-- **Shopping Cart**: Add, remove, and update product quantities
-- **Cart Persistence**: Cart state maintained across navigation using ValueNotifier
-- **Price Calculation**: Dynamic total price calculation with real-time updates
+### Shopping Experience
+The app has different product collections you can browse through:
+- **Signature & Essential Range** - Premium uni merchandise
+- **Portsmouth City Collection** - Portsmouth themed products
+- **Collections Page** - Shows all available collections
+- **Sale Page** - All discounted items in one place
 
-### Product Collections
-- **Signature & Essential Range**: Combined collection showcasing premium university merchandise
-- **Portsmouth City Collection**: City-themed products for the city Portsmouth
-- **Collections Overview**: Dedicated page showcasing all available collections
-- **Sale Section**: Dedicated page displaying products with discounted prices
+When you click on a product, you get taken to a detail page where you can:
+- See a bigger product image
+- Choose a color (Purple, Pink, Blue, Black, Navy Blue)
+- Pick a size (XS, S, M, L, XL, XXL)
+- Add it to your cart
 
-### Personalisation Service
-- **Text Customisation**: Add 1-4 lines of custom text to products
-- **Dynamic Pricing**: £3.00 for 1 line, £5.00 for 2+ lines
-- **Custom Input Fields**: Dynamic form fields based on line selection
-- **Personalisation Display**: Custom text shown in cart with line-by-line breakdown
+The shopping cart keeps track of everything you've added. You can change quantities with +/- buttons, and it automatically calculates the total price.
 
-### Navigation & UI
-- **Responsive Header**: Consistent navigation bar across all pages
-- **Dropdown Menus**: 
-  - Shop dropdown (Collections, Signature & Essential Range, Portsmouth City)
-  - Print Shack dropdown (About, Personalisation)
-- **Sale Banner**: Promotional banner highlighting current sales
-- **Footer**: Comprehensive footer with links and information
-- **Breadcrumb Navigation**: Clear navigation paths throughout the app
-
-### Additional Features
-- **Print Shack Information**: Dedicated page about personalisation services
-- **About Page**: Information about the Students' Union
-- **Login System**: User authentication interface
-- **Product Variants**: Support for color and size options
-- **Sale Pricing**: Display both original and sale prices
-
-## 📁 Project Structure
-
-```
-union_shop/
-├── lib/
-│   ├── main.dart                          # App entry point and home screen
-│   ├── cart_model.dart                    # Cart state management model
-│   ├── cart_page.dart                     # Shopping cart display
-│   ├── product_page.dart                  # Product listing page
-│   ├── product_detail_page.dart           # Individual product details
-│   ├── collections_page.dart              # Collections overview
-│   ├── combined_collection.dart           # Signature & Essential Range
-│   ├── portsmouth_city_collection.dart    # Portsmouth City Collection
-│   ├── essential_range_collection.dart    # Essential Range Collection
-│   ├── sale_page.dart                     # Sale products page
-│   ├── personalisation_page.dart          # Text personalisation service
-│   ├── print_shack_page.dart             # Print Shack information
-│   ├── about_page.dart                    # About the Union
-│   └── login_page.dart                    # User authentication
-├── test/
-│   ├── home_test.dart                     # Home screen tests
-│   └── product_test.dart                  # Product functionality tests
-├── android/                               # Android platform files
-├── ios/                                   # iOS platform files
-├── web/                                   # Web platform files
-├── pubspec.yaml                           # Project dependencies
-└── README.md                              # This file
-```
-
-##  Technical Implementation
-
-### Framework & Language
-- **Flutter**: Cross-platform mobile/web framework
-- **Dart**: Programming language
-- **Material Design**: UI component library
-
-### State Management
-The application uses **ValueNotifier** and **ValueListenableBuilder** for reactive state management:
-
-```dart
-// Global cart instance
-final cart = CartModel();
-
-// Reactive UI updates
-ValueListenableBuilder<List<CartItem>>(
-  valueListenable: cart.items,
-  builder: (context, items, child) {
-    // UI rebuilds automatically when cart changes
-  },
-)
-```
-
-### Data Models
-
-#### CartItem Model
-Supports both regular products and personalised items:
-- `title`: Product name
-- `price`: Product price
-- `imageUrl`: Product image path
-- `color`: Selected color variant (optional)
-- `size`: Selected size variant (optional)
-- `personalisationLines`: Number of custom text lines (optional)
-- `personalisationText`: List of custom text strings (optional)
-- `quantity`: Number of items
+### The Print Shack (Personalisation)
+This is a cool feature I added where you can personalise products with custom text:
+- Pick how many lines you want (1 to 4)
+- Input fields appear dynamically based on your selection
+- Pricing works out as £3.00 for 1 line or £5.00 for 2 or more
+- Your custom text shows up in the cart with all the details
 
 ### Navigation
-Uses Flutter's named routes with `onGenerateRoute` for dynamic routing:
-- Static routes: `/`, `/cart`, `/about`, `/sale`, etc.
-- Dynamic routes: `/product-detail` with arguments
-- Route parameters passed via `Navigator.pushNamed()` arguments
+I made sure there's a consistent header on every page with:
+- Shop dropdown menu (access all collections)
+- The Print Shack dropdown (About page and Personalisation)
+- Sale button
+- Cart button (shows how many items you have)
+- Login button
 
-### Key Design Patterns
-1. **Separation of Concerns**: Models, views, and business logic separated
-2. **Reactive Programming**: ValueNotifier for state updates
-3. **Widget Composition**: Reusable components across pages
-4. **Null Safety**: Full Dart null safety implementation
+There's also a sale banner at the top and a footer at the bottom on all pages.
 
-##  Installation
+## Technical Details
 
-### Prerequisites
-- Flutter SDK (>=2.17.0 <4.0.0)
-- Dart SDK
-- Android Studio / Xcode (for mobile development)
-- VS Code or Android Studio (recommended IDEs)
+Built using **Flutter** and **Dart**. I used:
+- **ValueNotifier** for state management - this keeps the cart updated across all pages
+- **Named routes** for navigation between pages
+- **Singleton pattern** for the cart so there's only one cart instance
+- **Material Design** widgets for the UI
 
-### Setup Steps
+The cart is reactive, meaning when you add something, the UI updates automatically without refreshing.
 
-1. **Clone the repository**
+## Project Structure
+
+The main code is in the `lib` folder:
+- `main.dart` - Home page with the featured collections
+- `cart_model.dart` - Manages the shopping cart (CartItem class and Cart logic)
+- `cart_page.dart` - Displays your cart items
+- `product_detail_page.dart` - Shows individual products with color/size options
+- `collections_page.dart` - Overview page showing all collections
+- `combined_collection.dart` - Signature & Essential Range products
+- `portsmouth_city_collection.dart` - Portsmouth City themed items
+- `sale_page.dart` - All the sale items
+- `personalisation_page.dart` - Where you add custom text to products
+- `print_shack_page.dart` - Info about The Print Shack services
+- `about_page.dart` - About the Students' Union
+- `login_page.dart` - Login page
+
+I also wrote tests for each page in the `test` folder to make sure everything works properly.
+
+### How the Cart Works
+
+The `cart_model.dart` file is important - it handles all the cart logic. I used a **singleton pattern** so there's only one cart throughout the app. The cart uses **ValueNotifier** which means when you add or remove items, any page that's listening (like the cart icon in the header) updates automatically.
+
+The CartItem class stores:
+- Product title, price, and image
+- Selected color and size
+- Personalisation details (if any)
+- Quantity
+
+When you add the same product with the same color/size, it just increases the quantity instead of creating a duplicate entry.
+
+## How to Run
+
+You'll need Flutter installed on your computer (I used Flutter SDK 2.17.0 or higher).
+
+1. Clone the repo:
    ```bash
    git clone https://github.com/leo-mack/union_shop.git
    cd union_shop
    ```
 
-2. **Install dependencies**
+2. Get the dependencies:
    ```bash
    flutter pub get
    ```
 
-3. **Run the application**
+3. Run the app:
    ```bash
-   # For web
-   flutter run -d chrome
-   
-   # For Android
-   flutter run -d android
-   
-   # For iOS
-   flutter run -d ios
+   flutter run -d chrome      # For web
+   flutter run -d android     # For Android
+   flutter run -d ios         # For iOS
    ```
 
-4. **Build for production**
-   ```bash
-   # Web
-   flutter build web
-   
-   # Android APK
-   flutter build apk
-   
-   # iOS
-   flutter build ios
-   ```
+## How to Use
 
-##  Usage
+### Shopping for Products
+- Start on the home page where you'll see featured collections
+- Use the **Shop** dropdown to browse:
+  - Collections (shows all available collections)
+  - Signature & Essential Range
+  - Portsmouth City Collection
+- Click on any product to see more details
+- On the product page, select a color and size from the dropdowns
+- Click **Add to Cart**
 
-### Adding Products to Cart
+### Personalising Items
+- Go to **The Print Shack** dropdown and click **Personalisation**
+- Pick how many lines of text you want (1-4)
+- The input fields appear dynamically
+- Type your custom text
+- Price is £3 for 1 line, £5 for 2+ lines
+- Add to cart and your text will show up with the item
 
-1. Navigate to a collection (Shop dropdown → choose collection)
-2. Click on a product to view details
-3. For regular products:
-   - Select color from dropdown
-   - Select size from dropdown
-   - Click "Add to Cart"
-4. For personalised products:
-   - Go to Print Shack → Personalisation
-   - Choose number of lines (1-4)
-   - Enter custom text for each line
-   - Click "Add to Cart"
-
-### Managing Cart
-
-1. Click "Cart" in the navigation bar
-2. View all added items with details
-3. Adjust quantities using +/- buttons
-4. Remove items by reducing quantity to 0
-5. View total price at the bottom
-
-### Browsing Collections
-
-1. Click "Shop" dropdown in navigation
-2. Options:
-   - **Collections**: Overview of all collections
-   - **Signature & Essential Range**: Premium products
-   - **Portsmouth City Collection**: City-themed items
-
-### Viewing Sale Items
-
-1. Click "Sale" button in navigation bar
-2. Browse all discounted products
-3. Original prices shown with strikethrough
-4. Sale prices displayed in red
-
-##  Pages Overview
-
-### Home Screen (`main.dart`)
-- Hero banner with sale announcement
-- Featured collections showcase
-- Navigation to all major sections
-- Quick access to cart and login
-
-### Collections Page (`collections_page.dart`)
-- Visual showcase of all collections
-- Hero images for each collection
-- Direct navigation to collection pages
-- Descriptions of each collection
-
-### Product Detail Page (`product_detail_page.dart`)
-- Large product image
-- Color selection dropdown
-- Size selection dropdown
-- Add to cart functionality
-- Price display
-
-### Cart Page (`cart_page.dart`)
-- List of all cart items
-- Product images and details
-- Quantity controls
-- Remove item functionality
-- Total price calculation
-- Display of personalisation details
-
-### Personalisation Page (`personalisation_page.dart`)
-- Product preview
-- Line count selector (1-4 lines)
-- Dynamic text input fields
-- Price calculation based on lines
-- Add to cart with custom text
-
-### Sale Page (`sale_page.dart`)
-- Grid layout of sale products
-- Original price (strikethrough)
-- Sale price (red highlight)
-- Filters products with `originalPrice` set
-
-### Print Shack Page (`print_shack_page.dart`)
-- Service information
-- Personalisation options
-- Hero images
-- Contact information
-
-## State Management
-
-### CartModel Implementation
-
-The `CartModel` class manages the shopping cart state:
-
-```dart
-class CartModel {
-  final ValueNotifier<List<CartItem>> items = ValueNotifier([]);
-  
-  void addItem(CartItem item) { }
-  void removeItem(CartItem item) { }
-  void updateQuantity(CartItem item, int newQuantity) { }
-  double get totalPrice { }
-  int get totalItems { }
-}
-```
-
-**Key Features:**
-- Automatic duplicate detection (same product + variants)
-- Quantity aggregation for identical items
-- Personalisation comparison for custom items
-- Real-time total calculation
-- Item count tracking
-
-### Reactive UI Updates
-
-All cart-dependent UI elements use `ValueListenableBuilder`:
-- Cart item count badge
-- Cart page product list
-- Total price display
-- Empty cart messages
+### Managing the Cart
+- Click **Cart** to see all your items
+- Use the **+** and **-** buttons to change quantities
+- If you reduce quantity to 0, the item gets removed
+- The total price updates automatically
+- For personalized items, you can see all your custom text lines
+4. Sale prices are displayed in red
+5. Click on any item to view details and add to cart
 
 ## Testing
 
-### Test Files
-- `test/home_test.dart`: Home screen widget tests
-- `test/product_test.dart`: Product functionality tests
+I wrote tests for all the main pages to verify everything works correctly. The tests check:
+- Page rendering (making sure elements appear)
+- Navigation between pages
+- Cart functionality (adding items, updating quantities)
+- Personalisation feature
+- Sale page filtering
 
-### Running Tests
+Run the tests with:
 ```bash
-# Run all tests
 flutter test
-
-# Run specific test file
-flutter test test/home_test.dart
-
-# Run with coverage
-flutter test --coverage
 ```
 
-### Test Coverage
-- Widget rendering tests
-- Navigation flow tests
-- Cart functionality tests
-- State management tests
+Each page has its own test file in the `test` folder. I used Flutter's widget testing framework which simulates user interactions like tapping buttons and filling in forms.
 
-## 🔮 Future Enhancements
+## What I Learned
 
-### Planned Features
-1. **Backend Integration**
-   - REST API connection
-   - Real-time inventory management
-   - Order history tracking
+This was my first proper e-commerce app and I learned a lot about:
+- State management with ValueNotifier (keeping the cart synced across pages)
+- Flutter navigation using named routes
+- Creating reusable widgets
+- Handling user input with forms and dropdowns
+- Writing widget tests
 
-2. **User Accounts**
-   - User profiles
-   - Saved addresses
-   - Order history
-   - Wishlist functionality
+The trickiest part was getting the cart to work properly - making sure duplicate items get combined instead of creating separate entries, and handling both regular products and personalized items differently.
 
-3. **Payment Integration**
-   - Secure checkout process
-   - Multiple payment methods
-   - Order confirmation emails
+## Future Improvements
 
-4. **Advanced Features**
-   - Product search functionality
-   - Filter and sort options
-   - Product reviews and ratings
-   - Image zoom and gallery view
-   - Size guide modal
+Things I could add to make it better:
+- Actual payment integration (maybe Stripe or PayPal)
+- User accounts with proper authentication
+- Backend database (currently products are hardcoded)
+- Search and filter functionality
+- Product reviews and ratings
+- Image galleries for products
+- Order history
 
-5. **Performance Optimizations**
-   - Image caching
-   - Lazy loading
-   - Pagination for product lists
+## About
 
-6. **Accessibility**
-   - Screen reader support
-   - Keyboard navigation
+Made by Leo Mack  
+University of Portsmouth Coursework  
+December 2025
 
-## Development Notes
-
-### Code Style
-- Follows Flutter/Dart style guidelines
-- Consistent naming conventions
-- Comprehensive inline documentation
-- Null safety enforced
-
-### Dependencies
-- `flutter`: Core framework
-- `cupertino_icons`: iOS-style icons
-- `flutter_test`: Testing framework
-- `flutter_lints`: Linting rules
-
-### Platform Support
--  Web
--  iOS
--  Linux
--  macOS
--  Windows
-
-##  Author
-
-**Leo Mack**
-- GitHub: [@leo-mack](https://github.com/leo-mack)
-- Project: University of Portsmouth Coursework TB1
-
-##  License
-
-This project is developed as coursework for the University of Portsmouth.
-
-##  Acknowledgments
-
-- Help from Friends
-- Course instructors for guidance and feedback
-
----
-
-**Version**: 1.0.0  
-**Last Updated**: December 2025  
-**Flutter Version**: >=2.17.0 <4.0.0
+Built with Flutter and Dart.
