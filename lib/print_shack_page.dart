@@ -74,8 +74,10 @@ class PrintShackPage extends StatelessWidget {
                                   const SizedBox(width: 12),
                                   PopupMenuButton<String>(
                                     onSelected: (String value) {
-                                      if (value == 'about' || value == 'personalisation') {
+                                      if (value == 'about') {
                                         Navigator.pushNamed(context, '/print-shack');
+                                      } else if (value == 'personalisation') {
+                                        Navigator.pushNamed(context, '/personalisation');
                                       }
                                     },
                                     itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
@@ -141,26 +143,12 @@ class PrintShackPage extends StatelessWidget {
               child: SizedBox(
                 height: 300,
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Expanded(
-                      child: Image.network(
-                        'https://shop.upsu.net/cdn/shop/files/sample_hoodie_1024x1024.jpg',
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) => Container(color: Colors.grey[300]),
-                      ),
-                    ),
-                    const SizedBox(width: 20),
-                    Expanded(
+                    SizedBox(
+                      width: 600,
                       child: Image.network(
                         'https://cdn.shopify.com/s/files/1/0226/4599/7643/files/The_Union_Print_Shack_Logo_-_Personalisation.png?v=1760535658',
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) => Container(color: Colors.grey[300]),
-                      ),
-                    ),
-                    const SizedBox(width: 20),
-                    Expanded(
-                      child: Image.network(
-                        'https://shop.upsu.net/cdn/shop/files/sample_personalisation_1024x1024.jpg',
                         fit: BoxFit.cover,
                         errorBuilder: (context, error, stackTrace) => Container(color: Colors.grey[300]),
                       ),
