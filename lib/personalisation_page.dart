@@ -58,18 +58,25 @@ class _PersonalisationPageState extends State<PersonalisationPage> {
           children: [
             // Header
             Container(
-              height: 150,
+              height: MediaQuery.of(context).size.width < 600 ? 120 : 150,
               color: Colors.white,
               child: Column(
                 children: [
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    padding: EdgeInsets.symmetric(
+                      vertical: MediaQuery.of(context).size.width < 600 ? 6 : 8,
+                    ),
                     color: const Color(0xFF4d2963),
-                    child: const Text(
+                    child: Text(
                       'BIG SALE! OUR ESSENTIAL RANGE HAS DROPPED IN PRICE! OVER 20% OFF! COME GRAB YOURS WHILE STOCK LASTS!',
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: MediaQuery.of(context).size.width < 600 ? 10 : 16,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   Expanded(
@@ -162,7 +169,10 @@ class _PersonalisationPageState extends State<PersonalisationPage> {
             // Main content
             Container(
               color: Colors.white,
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
+              padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width < 600 ? 16 : 40,
+                vertical: MediaQuery.of(context).size.width < 600 ? 16 : 40,
+              ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -173,7 +183,7 @@ class _PersonalisationPageState extends State<PersonalisationPage> {
                         Image.network(
                           'https://shop.upsu.net/cdn/shop/products/Personalised_Image_1024x1024@2x.jpg?v=1562949869',
                           fit: BoxFit.cover,
-                          height: 500,
+                          height: MediaQuery.of(context).size.width < 600 ? 250 : 500,
                           errorBuilder: (context, error, stackTrace) => Container(color: Colors.grey[300], height: 500),
                         ),
                         const SizedBox(height: 20),

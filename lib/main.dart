@@ -188,30 +188,30 @@ class _HeroCarouselState extends State<HeroCarousel> {
           Positioned(
             left: 24,
             right: 24,
-            top: 80,
+            top: MediaQuery.of(context).size.width < 600 ? 50 : 80,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                   _titles[_current],
-                  style: const TextStyle(
-                    fontSize: 32,
+                  style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.width < 600 ? 24 : 32,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                     height: 1.2,
                   ),
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: MediaQuery.of(context).size.width < 600 ? 8 : 16),
                 Text(
                   _subtitles[_current],
-                  style: const TextStyle(
-                    fontSize: 20,
+                  style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.width < 600 ? 14 : 20,
                     color: Colors.white,
                     height: 1.5,
                   ),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 32),
+                SizedBox(height: MediaQuery.of(context).size.width < 600 ? 16 : 32),
                 ElevatedButton(
                   onPressed: () {
                     // Navigate based on current slide
@@ -227,10 +227,17 @@ class _HeroCarouselState extends State<HeroCarousel> {
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.zero,
                     ),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width < 600 ? 16 : 24,
+                      vertical: MediaQuery.of(context).size.width < 600 ? 10 : 12,
+                    ),
                   ),
                   child: Text(
                     _buttonLabels[_current],
-                    style: const TextStyle(fontSize: 14, letterSpacing: 1),
+                    style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.width < 600 ? 12 : 14,
+                      letterSpacing: 1,
+                    ),
                   ),
                 ),
               ],
@@ -317,25 +324,34 @@ class HomeScreen extends StatelessWidget {
           children: [
             // Header
             Container(
-              height: 150,
+              height: MediaQuery.of(context).size.width < 600 ? 120 : 150,
               color: Colors.white,
               child: Column(
                 children: [
                   // Top banner
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    padding: EdgeInsets.symmetric(
+                      vertical: MediaQuery.of(context).size.width < 600 ? 6 : 8,
+                    ),
                     color: const Color(0xFF4d2963),
-                    child: const Text(
-                      'BIG SALE! OUR ESSENTIAL RANGE HAS DROPPED IN PRICE! OVER 20% OFF! COME GRAB YOURS WHILE STOCK\nLASTS!',
+                    child: Text(
+                      'BIG SALE! OUR ESSENTIAL RANGE HAS DROPPED IN PRICE! OVER 20% OFF! COME GRAB YOURS WHILE STOCK LASTS!',
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: MediaQuery.of(context).size.width < 600 ? 10 : 16,
+                      ),
+                      maxLines: MediaQuery.of(context).size.width < 600 ? 2 : 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   // Main header
                   Expanded(
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width < 600 ? 8 : 10,
+                      ),
                       child: Row(
                         children: [
                           GestureDetector(
@@ -344,7 +360,7 @@ class HomeScreen extends StatelessWidget {
                             },
                             child: Image.network(
                               'https://shop.upsu.net/cdn/shop/files/upsu_300x300.png?v=1614735854',
-                              height: 40,
+                              height: MediaQuery.of(context).size.width < 600 ? 30 : 40,
                               fit: BoxFit.cover,
                               errorBuilder: (context, error, stackTrace) {
                                 return Container(
@@ -369,16 +385,24 @@ class HomeScreen extends StatelessWidget {
                                 children: [
                                   TextButton(
                                     onPressed: () => navigateToHome(context),
-                                    child: const Text(
+                                    style: TextButton.styleFrom(
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: MediaQuery.of(context).size.width < 600 ? 4 : 8,
+                                        vertical: 8,
+                                      ),
+                                      minimumSize: Size.zero,
+                                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                    ),
+                                    child: Text(
                                       'Home',
                                       style: TextStyle(
                                         color: Colors.black,
-                                        fontSize: 14,
+                                        fontSize: MediaQuery.of(context).size.width < 600 ? 11 : 14,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(width: 12),
+                                  SizedBox(width: MediaQuery.of(context).size.width < 600 ? 4 : 12),
                                   // Shop with dropdown
                                   PopupMenuButton<String>(
                                     onSelected: (value) {
@@ -396,21 +420,25 @@ class HomeScreen extends StatelessWidget {
                                       PopupMenuItem(value: 'collections', child: Text('Collections')),
                                     ],
                                     child: Row(
-                                      children: const [
+                                      children: [
                                         Text(
                                           'Shop',
                                           style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 14,
+                                            fontSize: MediaQuery.of(context).size.width < 600 ? 11 : 14,
                                             fontWeight: FontWeight.w500,
                                           ),
                                         ),
-                                        SizedBox(width: 4),
-                                        Icon(Icons.arrow_drop_down, color: Colors.black),
+                                        SizedBox(width: MediaQuery.of(context).size.width < 600 ? 2 : 4),
+                                        Icon(
+                                          Icons.arrow_drop_down,
+                                          color: Colors.black,
+                                          size: MediaQuery.of(context).size.width < 600 ? 16 : 24,
+                                        ),
                                       ],
                                     ),
                                   ),
-                                  const SizedBox(width: 12),
+                                  SizedBox(width: MediaQuery.of(context).size.width < 600 ? 4 : 12),
                                   // The Print Shack with dropdown
                                   PopupMenuButton<String>(
                                     onSelected: (value) {
@@ -423,28 +451,40 @@ class HomeScreen extends StatelessWidget {
                                       PopupMenuItem(value: 'personalisation', child: Text('Personalisation')),
                                     ],
                                     child: Row(
-                                      children: const [
+                                      children: [
                                         Text(
-                                          'The Print Shack',
+                                          MediaQuery.of(context).size.width < 600 ? 'Print' : 'The Print Shack',
                                           style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 14,
+                                            fontSize: MediaQuery.of(context).size.width < 600 ? 11 : 14,
                                             fontWeight: FontWeight.w500,
                                           ),
                                         ),
-                                        SizedBox(width: 4),
-                                        Icon(Icons.arrow_drop_down, color: Colors.black),
+                                        SizedBox(width: MediaQuery.of(context).size.width < 600 ? 2 : 4),
+                                        Icon(
+                                          Icons.arrow_drop_down,
+                                          color: Colors.black,
+                                          size: MediaQuery.of(context).size.width < 600 ? 16 : 24,
+                                        ),
                                       ],
                                     ),
                                   ),
-                                  const SizedBox(width: 12),
+                                  SizedBox(width: MediaQuery.of(context).size.width < 600 ? 4 : 12),
                                   TextButton(
                                     onPressed: () => Navigator.pushNamed(context, '/sale'),
-                                    child: const Text(
+                                    style: TextButton.styleFrom(
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: MediaQuery.of(context).size.width < 600 ? 4 : 8,
+                                        vertical: 8,
+                                      ),
+                                      minimumSize: Size.zero,
+                                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                    ),
+                                    child: Text(
                                       'Sale',
                                       style: TextStyle(
                                         color: Colors.black,
-                                        fontSize: 14,
+                                        fontSize: MediaQuery.of(context).size.width < 600 ? 11 : 14,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
@@ -527,24 +567,28 @@ class HomeScreen extends StatelessWidget {
             ),
 
             // Hero Section (carousel)
-            HeroCarousel(height: 400),
+            HeroCarousel(
+              height: MediaQuery.of(context).size.width < 600 ? 250 : 400,
+            ),
 
             // Essential Range Section
             Container(
               color: Colors.white,
               child: Padding(
-                padding: const EdgeInsets.all(40.0),
+                padding: EdgeInsets.all(
+                  MediaQuery.of(context).size.width < 600 ? 16.0 : 40.0,
+                ),
                 child: Column(
                   children: [
-                    const Text(
+                    Text(
                       'ESSENTIAL RANGE - OVER 20% OFF!',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: MediaQuery.of(context).size.width < 600 ? 16 : 20,
                         color: Colors.black,
                         letterSpacing: 1,
                       ),
                     ),
-                    const SizedBox(height: 48),
+                    SizedBox(height: MediaQuery.of(context).size.width < 600 ? 24 : 48),
                     GridView.count(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
@@ -580,25 +624,28 @@ class HomeScreen extends StatelessWidget {
             Container(
               color: Colors.white,
               child: Padding(
-                padding: const EdgeInsets.all(40.0),
+                padding: EdgeInsets.all(
+                  MediaQuery.of(context).size.width < 600 ? 16.0 : 40.0,
+                ),
                 child: Column(
                   children: [
-                    const Text(
+                    Text(
                       'SIGNATURE RANGE',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: MediaQuery.of(context).size.width < 600 ? 16 : 20,
                         color: Colors.black,
                         letterSpacing: 1,
                       ),
                     ),
-                    const SizedBox(height: 48),
+                    SizedBox(height: MediaQuery.of(context).size.width < 600 ? 24 : 48),
                     GridView.count(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       crossAxisCount:
                           MediaQuery.of(context).size.width > 600 ? 2 : 1,
-                      crossAxisSpacing: 24,
-                      mainAxisSpacing: 48,
+                      crossAxisSpacing: MediaQuery.of(context).size.width < 600 ? 16 : 24,
+                      mainAxisSpacing: MediaQuery.of(context).size.width < 600 ? 24 : 48,
+                      childAspectRatio: MediaQuery.of(context).size.width < 600 ? 0.75 : 1.0,
                       children: const [
                         ProductCard(
                           title: 'Signature Hoodie',
@@ -627,25 +674,28 @@ class HomeScreen extends StatelessWidget {
             Container(
               color: Colors.white,
               child: Padding(
-                padding: const EdgeInsets.all(40.0),
+                padding: EdgeInsets.all(
+                  MediaQuery.of(context).size.width < 600 ? 16.0 : 40.0,
+                ),
                 child: Column(
                   children: [
-                    const Text(
+                    Text(
                       'PORTSMOUTH CITY COLLECTION',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: MediaQuery.of(context).size.width < 600 ? 16 : 20,
                         color: Colors.black,
                         letterSpacing: 1,
                       ),
                     ),
-                    const SizedBox(height: 48),
+                    SizedBox(height: MediaQuery.of(context).size.width < 600 ? 24 : 48),
                     GridView.count(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       crossAxisCount:
                           MediaQuery.of(context).size.width > 600 ? 2 : 1,
-                      crossAxisSpacing: 24,
-                      mainAxisSpacing: 48,
+                      crossAxisSpacing: MediaQuery.of(context).size.width < 600 ? 16 : 24,
+                      mainAxisSpacing: MediaQuery.of(context).size.width < 600 ? 24 : 48,
+                      childAspectRatio: MediaQuery.of(context).size.width < 600 ? 0.75 : 1.0,
                       children: const [
                         ProductCard(
                           title: 'Portsmouth City Postcard',

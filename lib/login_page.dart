@@ -61,8 +61,11 @@ class _LoginPageState extends State<LoginPage> {
       body: Center(
         child: SingleChildScrollView(
           child: Container(
-            width: 600,
-            padding: const EdgeInsets.all(40),
+            width: MediaQuery.of(context).size.width < 600 ? double.infinity : 600,
+            margin: MediaQuery.of(context).size.width < 600 ? const EdgeInsets.all(16) : EdgeInsets.zero,
+            padding: EdgeInsets.all(
+              MediaQuery.of(context).size.width < 600 ? 24 : 40,
+            ),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(8),
@@ -72,12 +75,12 @@ class _LoginPageState extends State<LoginPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // Logo
-                const Text(
+                Text(
                   'The UNION',
                   style: TextStyle(
-                    fontSize: 36,
+                    fontSize: MediaQuery.of(context).size.width < 600 ? 28 : 36,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF4d2963),
+                    color: const Color(0xFF4d2963),
                     letterSpacing: 2,
                   ),
                 ),

@@ -11,19 +11,26 @@ class PortsmouthCityCollection extends StatelessWidget {
           children: [
             // Header
             Container(
-              height: 150,
+              height: MediaQuery.of(context).size.width < 600 ? 120 : 150,
               color: Colors.white,
               child: Column(
                 children: [
                   // Top banner
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    padding: EdgeInsets.symmetric(
+                      vertical: MediaQuery.of(context).size.width < 600 ? 6 : 8,
+                    ),
                     color: const Color(0xFF4d2963),
-                    child: const Text(
+                    child: Text(
                       'BIG SALE! OUR ESSENTIAL RANGE HAS DROPPED IN PRICE! OVER 20% OFF! COME GRAB YOURS WHILE STOCK\nLASTS!',
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: MediaQuery.of(context).size.width < 600 ? 10 : 16,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   // Main header
@@ -250,24 +257,26 @@ class PortsmouthCityCollection extends StatelessWidget {
 
             // Collection description
             Padding(
-              padding: const EdgeInsets.all(24.0),
+              padding: EdgeInsets.all(
+                MediaQuery.of(context).size.width < 600 ? 16.0 : 24.0,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     "We're excited to launch the Portsmouth City Collection",
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: MediaQuery.of(context).size.width < 600 ? 14 : 16,
                       fontWeight: FontWeight.w600,
                       color: Colors.black,
                       height: 1.5,
                     ),
                   ),
                   const SizedBox(height: 16),
-                  const Text(
+                  Text(
                     'This unique collection celebrates our vibrant city through Julia\'s iconic hand-drawn style - full of charm, character, and local landmarks that students and visitors alike will instantly recognise. From the Spinnaker Tower to The King\'s Theatre, each design captures the spirit of Portsmouth in bold lines and colourful detail.',
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: MediaQuery.of(context).size.width < 600 ? 12 : 14,
                       color: Colors.grey,
                       height: 1.6,
                     ),

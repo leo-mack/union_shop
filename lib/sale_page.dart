@@ -12,18 +12,25 @@ class SalePage extends StatelessWidget {
           children: [
             // Header
             Container(
-              height: 150,
+              height: MediaQuery.of(context).size.width < 600 ? 120 : 150,
               color: Colors.white,
               child: Column(
                 children: [
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    padding: EdgeInsets.symmetric(
+                      vertical: MediaQuery.of(context).size.width < 600 ? 6 : 8,
+                    ),
                     color: const Color(0xFF4d2963),
-                    child: const Text(
+                    child: Text(
                       'BIG SALE! OUR ESSENTIAL RANGE HAS DROPPED IN PRICE! OVER 20% OFF! COME GRAB YOURS WHILE STOCK LASTS!',
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: MediaQuery.of(context).size.width < 600 ? 10 : 16,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   Expanded(
@@ -121,10 +128,17 @@ class SalePage extends StatelessWidget {
             // Page title
             Container(
               color: Colors.white,
-              padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 40),
-              child: const Text(
+              padding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).size.width < 600 ? 20 : 40,
+                horizontal: MediaQuery.of(context).size.width < 600 ? 16 : 40,
+              ),
+              child: Text(
                 'Sale',
-                style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: Colors.black),
+                style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width < 600 ? 24 : 36,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -132,13 +146,15 @@ class SalePage extends StatelessWidget {
             // Sale products
             Container(
               color: Colors.white,
-              padding: const EdgeInsets.all(40.0),
+              padding: EdgeInsets.all(
+                MediaQuery.of(context).size.width < 600 ? 16.0 : 40.0,
+              ),
               child: GridView.count(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 crossAxisCount: MediaQuery.of(context).size.width > 900 ? 2 : 1,
-                crossAxisSpacing: 40,
-                mainAxisSpacing: 40,
+                crossAxisSpacing: MediaQuery.of(context).size.width < 600 ? 16 : 40,
+                mainAxisSpacing: MediaQuery.of(context).size.width < 600 ? 16 : 40,
                 childAspectRatio: 0.75,
                 children: const [
                   _SaleProductCard(

@@ -12,19 +12,26 @@ class CombinedCollection extends StatelessWidget {
           children: [
             // Header
             Container(
-              height: 150,
+              height: MediaQuery.of(context).size.width < 600 ? 120 : 150,
               color: Colors.white,
               child: Column(
                 children: [
                   // Top banner
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    padding: EdgeInsets.symmetric(
+                      vertical: MediaQuery.of(context).size.width < 600 ? 6 : 8,
+                    ),
                     color: const Color(0xFF4d2963),
-                    child: const Text(
+                    child: Text(
                       'BIG SALE! OUR ESSENTIAL RANGE HAS DROPPED IN PRICE! OVER 20% OFF! COME GRAB YOURS WHILE STOCK\nLASTS!',
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: MediaQuery.of(context).size.width < 600 ? 10 : 16,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   // Main header
@@ -114,11 +121,13 @@ class CombinedCollection extends StatelessWidget {
             // Page title
             Container(
               color: Colors.white,
-              padding: const EdgeInsets.all(40),
-              child: const Text(
+              padding: EdgeInsets.all(
+                MediaQuery.of(context).size.width < 600 ? 16 : 40,
+              ),
+              child: Text(
                 'Signature & Essential Range',
                 style: TextStyle(
-                  fontSize: 32,
+                  fontSize: MediaQuery.of(context).size.width < 600 ? 24 : 32,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
@@ -130,12 +139,14 @@ class CombinedCollection extends StatelessWidget {
             Container(
               color: Colors.white,
               child: Padding(
-                padding: const EdgeInsets.all(40.0),
+                padding: EdgeInsets.all(
+                  MediaQuery.of(context).size.width < 600 ? 16.0 : 40.0,
+                ),
                 child: GridView.count(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   crossAxisCount: MediaQuery.of(context).size.width > 900 ? 2 : 1,
-                  crossAxisSpacing: 40,
+                  crossAxisSpacing: MediaQuery.of(context).size.width < 600 ? 16 : 40,
                   mainAxisSpacing: 40,
                   childAspectRatio: 0.75,
                   children: const [

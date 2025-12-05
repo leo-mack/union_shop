@@ -38,19 +38,26 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
           children: [
             // Header (matching home page)
             Container(
-              height: 150,
+              height: MediaQuery.of(context).size.width < 600 ? 120 : 150,
               color: Colors.white,
               child: Column(
                 children: [
                   // Top banner
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    padding: EdgeInsets.symmetric(
+                      vertical: MediaQuery.of(context).size.width < 600 ? 6 : 8,
+                    ),
                     color: const Color(0xFF4d2963),
-                    child: const Text(
+                    child: Text(
                       'BIG SALE! OUR ESSENTIAL RANGE HAS DROPPED IN PRICE! OVER 20% OFF! COME GRAB YOURS WHILE STOCK\nLASTS!',
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: MediaQuery.of(context).size.width < 600 ? 10 : 16,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   // Main header
@@ -251,7 +258,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
             Container(
               color: Colors.white,
               child: Padding(
-                padding: const EdgeInsets.all(40.0),
+                padding: EdgeInsets.all(
+                  MediaQuery.of(context).size.width < 600 ? 16.0 : 40.0,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -265,7 +274,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             children: [
                               Container(
                                 width: double.infinity,
-                                height: 400,
+                                height: MediaQuery.of(context).size.width < 600 ? 250 : 400,
                                 color: Colors.grey[200],
                                 child: Image.network(
                                   widget.imageUrl,
@@ -320,13 +329,13 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             children: [
                               Text(
                                 widget.title,
-                                style: const TextStyle(
-                                  fontSize: 28,
+                                style: TextStyle(
+                                  fontSize: MediaQuery.of(context).size.width < 600 ? 20 : 28,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black,
                                 ),
                               ),
-                              const SizedBox(height: 16),
+                              SizedBox(height: MediaQuery.of(context).size.width < 600 ? 12 : 16),
                               if (widget.originalPrice.isNotEmpty)
                                 Row(
                                   children: [

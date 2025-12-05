@@ -12,18 +12,25 @@ class AboutPage extends StatelessWidget {
           children: [
             // Header (consistent with other pages)
             Container(
-              height: 150,
+              height: MediaQuery.of(context).size.width < 600 ? 120 : 150,
               color: Colors.white,
               child: Column(
                 children: [
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    padding: EdgeInsets.symmetric(
+                      vertical: MediaQuery.of(context).size.width < 600 ? 6 : 8,
+                    ),
                     color: const Color(0xFF4d2963),
-                    child: const Text(
+                    child: Text(
                       'BIG SALE! OUR ESSENTIAL RANGE HAS DROPPED IN PRICE! OVER 20% OFF! COME GRAB YOURS WHILE STOCK\nLASTS!',
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: MediaQuery.of(context).size.width < 600 ? 10 : 16,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   Expanded(
@@ -125,22 +132,43 @@ class AboutPage extends StatelessWidget {
             Container(
               color: Colors.white,
               width: double.infinity,
-              padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 60),
+              padding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).size.width < 600 ? 24 : 60,
+                horizontal: MediaQuery.of(context).size.width < 600 ? 16 : 60,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text('About us', style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.black)),
-                  const SizedBox(height: 40),
+                  Text(
+                    'About us',
+                    style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.width < 600 ? 24 : 32,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.width < 600 ? 20 : 40),
                   SizedBox(
-                    width: 600,
+                    width: MediaQuery.of(context).size.width < 600 ? double.infinity : 600,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text('Welcome to the Union Shop!', style: TextStyle(fontSize: 16, color: Colors.grey, height: 1.6)),
-                        SizedBox(height: 16),
+                      children: [
+                        Text(
+                          'Welcome to the Union Shop!',
+                          style: TextStyle(
+                            fontSize: MediaQuery.of(context).size.width < 600 ? 14 : 16,
+                            color: Colors.grey,
+                            height: 1.6,
+                          ),
+                        ),
+                        const SizedBox(height: 16),
                         Text(
                           "We're dedicated to giving you the very best University branded products, with a range of clothing and merchandise available to shop all year round! We even offer an exclusive personalisation service!",
-                          style: TextStyle(fontSize: 14, color: Colors.grey, height: 1.6),
+                          style: TextStyle(
+                            fontSize: MediaQuery.of(context).size.width < 600 ? 12 : 14,
+                            color: Colors.grey,
+                            height: 1.6,
+                          ),
                         ),
                         SizedBox(height: 16),
                         Text(

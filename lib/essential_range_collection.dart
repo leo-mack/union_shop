@@ -12,19 +12,26 @@ class EssentialRangeCollection extends StatelessWidget {
           children: [
             // Header
             Container(
-              height: 150,
+              height: MediaQuery.of(context).size.width < 600 ? 120 : 150,
               color: Colors.white,
               child: Column(
                 children: [
                   // Top banner
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    padding: EdgeInsets.symmetric(
+                      vertical: MediaQuery.of(context).size.width < 600 ? 6 : 8,
+                    ),
                     color: const Color(0xFF4d2963),
-                    child: const Text(
+                    child: Text(
                       'BIG SALE! OUR ESSENTIAL RANGE HAS DROPPED IN PRICE! OVER 20% OFF! COME GRAB YOURS WHILE STOCK\nLASTS!',
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: MediaQuery.of(context).size.width < 600 ? 10 : 16,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   // Main header
@@ -225,35 +232,38 @@ class EssentialRangeCollection extends StatelessWidget {
             Container(
               width: double.infinity,
               color: Colors.grey[300],
-              padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 40),
+              padding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).size.width < 600 ? 20 : 40,
+                horizontal: MediaQuery.of(context).size.width < 600 ? 16 : 40,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     'Essential Range',
                     style: TextStyle(
-                      fontSize: 36,
+                      fontSize: MediaQuery.of(context).size.width < 600 ? 24 : 36,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
                   ),
                   const SizedBox(height: 16),
-                  const Text(
+                  Text(
                     'Everyday wear, redefined.',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: MediaQuery.of(context).size.width < 600 ? 14 : 16,
                       fontWeight: FontWeight.w600,
                       color: Colors.black,
                     ),
                   ),
                   const SizedBox(height: 12),
-                  const SizedBox(
-                    width: 800,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width < 600 ? double.infinity : 800,
                     child: Text(
                       'The Essential Collection focuses on versatile must-haves designed for daily rotation. Clean lines, modern fits, and a fresh chest logo bring a contemporary edge to staple t-shirts. Easy to wear, easy to style - these are the essentials your wardrobe can\'t do without.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: MediaQuery.of(context).size.width < 600 ? 12 : 14,
                         color: Colors.grey,
                         height: 1.6,
                       ),

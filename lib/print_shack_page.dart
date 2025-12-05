@@ -12,18 +12,25 @@ class PrintShackPage extends StatelessWidget {
           children: [
             // Header
             Container(
-              height: 150,
+              height: MediaQuery.of(context).size.width < 600 ? 120 : 150,
               color: Colors.white,
               child: Column(
                 children: [
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    padding: EdgeInsets.symmetric(
+                      vertical: MediaQuery.of(context).size.width < 600 ? 6 : 8,
+                    ),
                     color: const Color(0xFF4d2963),
-                    child: const Text(
+                    child: Text(
                       'BIG SALE! OUR ESSENTIAL RANGE HAS DROPPED IN PRICE! OVER 20% OFF! COME GRAB YOURS WHILE STOCK LASTS!',
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: MediaQuery.of(context).size.width < 600 ? 10 : 16,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   Expanded(
@@ -131,10 +138,17 @@ class PrintShackPage extends StatelessWidget {
             // Page title
             Container(
               color: Colors.white,
-              padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 40),
-              child: const Text(
+              padding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).size.width < 600 ? 20 : 40,
+                horizontal: MediaQuery.of(context).size.width < 600 ? 16 : 40,
+              ),
+              child: Text(
                 'The Union Print Shack',
-                style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: Colors.black),
+                style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width < 600 ? 24 : 36,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -142,9 +156,12 @@ class PrintShackPage extends StatelessWidget {
             // Hero images
             Container(
               color: Colors.white,
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+              padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width < 600 ? 16 : 40,
+                vertical: MediaQuery.of(context).size.width < 600 ? 16 : 20,
+              ),
               child: SizedBox(
-                height: 300,
+                height: MediaQuery.of(context).size.width < 600 ? 200 : 300,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
