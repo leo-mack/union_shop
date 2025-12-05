@@ -11,6 +11,7 @@ import 'package:union_shop/combined_collection.dart';
 import 'package:union_shop/print_shack_page.dart';
 import 'package:union_shop/personalisation_page.dart';
 import 'package:union_shop/sale_page.dart';
+import 'package:union_shop/collections_page.dart';
 
 void main() {
   runApp(const UnionShopApp());
@@ -39,6 +40,7 @@ class UnionShopApp extends StatelessWidget {
         '/print-shack': (context) => const PrintShackPage(),
         '/personalisation': (context) => const PersonalisationPage(),
         '/sale': (context) => const SalePage(),
+        '/collections': (context) => const CollectionsPage(),
         '/collections/portsmouth-city': (context) => const PortsmouthCityCollection(),
         '/collections/essential-range': (context) => const EssentialRangeCollection(),
         '/collections/signature-essential': (context) => const CombinedCollection(),
@@ -384,11 +386,14 @@ class HomeScreen extends StatelessWidget {
                                         Navigator.pushNamed(context, '/collections/signature-essential');
                                       } else if (value == 'portsmouth') {
                                         Navigator.pushNamed(context, '/collections/portsmouth-city');
+                                      } else if (value == 'collections') {
+                                        Navigator.pushNamed(context, '/collections');
                                       }
                                     },
                                     itemBuilder: (context) => const [
                                       PopupMenuItem(value: 'signature-essential', child: Text('Signature & Essential Range')),
                                       PopupMenuItem(value: 'portsmouth', child: Text('Portsmouth City Collection')),
+                                      PopupMenuItem(value: 'collections', child: Text('Collections')),
                                     ],
                                     child: Row(
                                       children: const [

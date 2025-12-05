@@ -62,11 +62,14 @@ class CombinedCollection extends StatelessWidget {
                                 Navigator.pushNamedAndRemoveUntil(context, '/collections/signature-essential', (route) => false);
                               } else if (value == 'portsmouth') {
                                 Navigator.pushNamedAndRemoveUntil(context, '/collections/portsmouth-city', (route) => false);
+                              } else if (value == 'collections') {
+                                Navigator.pushNamedAndRemoveUntil(context, '/collections', (route) => false);
                               }
                             },
                             itemBuilder: (context) => const [
                               PopupMenuItem(value: 'signature-essential', child: Text('Signature & Essential Range')),
                               PopupMenuItem(value: 'portsmouth', child: Text('Portsmouth City Collection')),
+                              PopupMenuItem(value: 'collections', child: Text('Collections')),
                             ],
                             child: Row(
                               children: const [

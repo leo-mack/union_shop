@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/main.dart' show FooterSection;
 
-class SalePage extends StatelessWidget {
-  const SalePage({super.key});
+class CollectionsPage extends StatelessWidget {
+  const CollectionsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,10 @@ class SalePage extends StatelessWidget {
                               Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  TextButton(onPressed: () => Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false), child: const Text('Home', style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500))),
+                                  TextButton(
+                                    onPressed: () => Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false),
+                                    child: const Text('Home', style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500)),
+                                  ),
                                   const SizedBox(width: 12),
                                   PopupMenuButton<String>(
                                     onSelected: (String val) {
@@ -55,14 +58,14 @@ class SalePage extends StatelessWidget {
                                         Navigator.pushNamed(context, '/collections/signature-essential');
                                       } else if (val == 'ports') {
                                         Navigator.pushNamed(context, '/collections/portsmouth-city');
-                                      } else if (val == 'collections') {
+                                      } else if (val == 'all') {
                                         Navigator.pushNamed(context, '/collections');
                                       }
                                     },
                                     itemBuilder: (BuildContext context) => [
                                       const PopupMenuItem<String>(value: 'sig-ess', child: Text('Signature & Essential Range')),
                                       const PopupMenuItem<String>(value: 'ports', child: Text('Portsmouth City Collection')),
-                                      const PopupMenuItem<String>(value: 'collections', child: Text('Collections')),
+                                      const PopupMenuItem<String>(value: 'all', child: Text('Collections')),
                                     ],
                                     child: const Row(
                                       children: [
@@ -123,13 +126,13 @@ class SalePage extends StatelessWidget {
               color: Colors.white,
               padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 40),
               child: const Text(
-                'Sale',
+                'Collections',
                 style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: Colors.black),
                 textAlign: TextAlign.center,
               ),
             ),
 
-            // Sale products
+            // Collections grid
             Container(
               color: Colors.white,
               padding: const EdgeInsets.all(40.0),
@@ -139,21 +142,22 @@ class SalePage extends StatelessWidget {
                 crossAxisCount: MediaQuery.of(context).size.width > 900 ? 2 : 1,
                 crossAxisSpacing: 40,
                 mainAxisSpacing: 40,
-                childAspectRatio: 0.75,
+                childAspectRatio: 1.5,
                 children: const [
-                  _SaleProductCard(
-                    title: 'Limited Edition Essential Zip Hoodies',
-                    price: '£16.00',
-                    originalPrice: '£20.00',
-                    imageUrl: 'https://shop.upsu.net/cdn/shop/files/Pink_Essential_Hoodie_2a3589c2-096f-479f-ac60-d41e8a853d04_1024x1024@2x.jpg?v=1749131089',
-                    description: 'Limited edition Essential Zip Hoodie. Premium quality, comfortable fit. Part of our Essential Range with over 20% off!',
+                  _CollectionCard(
+                    title: 'Signature & Essential Range',
+                    imageUrl: 'https://shop.upsu.net/cdn/shop/files/Signature_T-Shirt_Indigo_Blue_2_1024x1024@2x.jpg?v=1758290534',
+                    route: '/collections/signature-essential',
                   ),
-                  _SaleProductCard(
-                    title: 'Essential T-shirt',
-                    price: '£6.00',
-                    originalPrice: '£10.00',
-                    imageUrl: 'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
-                    description: 'Classic Essential T-shirt in sage colour. Comfortable and versatile. Great value at just £6.00!',
+                  _CollectionCard(
+                    title: 'Portsmouth City Collection',
+                    imageUrl: 'https://shop.upsu.net/cdn/shop/files/PortsmouthCityNotebook_1024x1024@2x.jpg?v=1757419215',
+                    route: '/collections/portsmouth-city',
+                  ),
+                  _CollectionCard(
+                    title: 'The Print Shack',
+                    imageUrl: 'https://shop.upsu.net/cdn/shop/files/CloseUp_1024x1024@2x.jpg?v=1614736784',
+                    route: '/personalisation',
                   ),
                 ],
               ),
@@ -167,111 +171,70 @@ class SalePage extends StatelessWidget {
   }
 }
 
-class _SaleProductCard extends StatelessWidget {
+class _CollectionCard extends StatelessWidget {
   final String title;
-  final String price;
-  final String originalPrice;
   final String imageUrl;
-  final String description;
+  final String route;
 
-  const _SaleProductCard({
+  const _CollectionCard({
     required this.title,
-    required this.price,
-    required this.originalPrice,
     required this.imageUrl,
-    required this.description,
+    required this.route,
   });
-
-  void _navigateToDetail(BuildContext context) {
-    Navigator.pushNamed(
-      context,
-      '/product-detail',
-      arguments: {
-        'title': title,
-        'price': price,
-        'imageUrl': imageUrl,
-        'description': description,
-        'originalPrice': originalPrice,
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _navigateToDetail(context),
+      onTap: () => Navigator.pushNamed(context, route),
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(color: Colors.grey[300]!),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Stack(
           children: [
-            Expanded(
-              child: Container(
-                width: double.infinity,
-                color: Colors.grey[200],
-                child: Image.network(
-                  imageUrl,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) => Container(
-                    color: Colors.grey[300],
-                    child: const Center(
-                      child: Icon(Icons.image_not_supported, color: Colors.grey),
-                    ),
+            // Background image
+            Positioned.fill(
+              child: Image.network(
+                imageUrl,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) => Container(
+                  color: Colors.grey[300],
+                  child: const Center(
+                    child: Icon(Icons.image_not_supported, color: Colors.grey, size: 48),
                   ),
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 12),
-                  Row(
-                    children: [
-                      Text(
-                        price,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.red,
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        originalPrice,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey,
-                          decoration: TextDecoration.lineThrough,
-                        ),
-                      ),
+            // Dark overlay
+            Positioned.fill(
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.black.withOpacity(0.3),
+                      Colors.black.withOpacity(0.7),
                     ],
                   ),
-                  const SizedBox(height: 8),
-                  Text(
-                    description,
+                ),
+              ),
+            ),
+            // Title text
+            Positioned.fill(
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(
+                    title,
                     style: const TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey,
-                      height: 1.5,
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
                     ),
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
                   ),
-                ],
+                ),
               ),
             ),
           ],

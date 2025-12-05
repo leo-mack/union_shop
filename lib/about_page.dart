@@ -57,11 +57,14 @@ class AboutPage extends StatelessWidget {
                                         Navigator.pushNamed(context, '/collections/signature-essential');
                                       } else if (value == 'portsmouth') {
                                         Navigator.pushNamed(context, '/collections/portsmouth-city');
+                                      } else if (value == 'collections') {
+                                        Navigator.pushNamed(context, '/collections');
                                       }
                                     },
                                     itemBuilder: (context) => const [
                                       PopupMenuItem(value: 'signature-essential', child: Text('Signature & Essential Range')),
                                       PopupMenuItem(value: 'portsmouth', child: Text('Portsmouth City Collection')),
+                                      PopupMenuItem(value: 'collections', child: Text('Collections')),
                                     ],
                                     child: Row(
                                       children: const [

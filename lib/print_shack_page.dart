@@ -57,11 +57,14 @@ class PrintShackPage extends StatelessWidget {
                                         Navigator.pushNamed(context, '/collections/signature-essential');
                                       } else if (value == 'ports') {
                                         Navigator.pushNamed(context, '/collections/portsmouth-city');
+                                      } else if (value == 'collections') {
+                                        Navigator.pushNamed(context, '/collections');
                                       }
                                     },
                                     itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
                                       const PopupMenuItem<String>(value: 'sig-ess', child: Text('Signature & Essential Range')),
                                       const PopupMenuItem<String>(value: 'ports', child: Text('Portsmouth City Collection')),
+                                      const PopupMenuItem<String>(value: 'collections', child: Text('Collections')),
                                     ],
                                     child: const Row(
                                       children: [

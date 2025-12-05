@@ -104,11 +104,14 @@ class _PersonalisationPageState extends State<PersonalisationPage> {
                                         Navigator.pushNamed(context, '/collections/signature-essential');
                                       } else if (val == 'ports') {
                                         Navigator.pushNamed(context, '/collections/portsmouth-city');
+                                      } else if (val == 'collections') {
+                                        Navigator.pushNamed(context, '/collections');
                                       }
                                     },
                                     itemBuilder: (BuildContext context) => [
                                       const PopupMenuItem<String>(value: 'sig-ess', child: Text('Signature & Essential Range')),
                                       const PopupMenuItem<String>(value: 'ports', child: Text('Portsmouth City Collection')),
+                                      const PopupMenuItem<String>(value: 'collections', child: Text('Collections')),
                                     ],
                                     child: const Row(
                                       children: [Text('Shop', style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500)), SizedBox(width: 4), Icon(Icons.arrow_drop_down, color: Colors.black)],
