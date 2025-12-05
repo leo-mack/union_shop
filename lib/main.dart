@@ -10,6 +10,7 @@ import 'package:union_shop/about_page.dart';
 import 'package:union_shop/combined_collection.dart';
 import 'package:union_shop/print_shack_page.dart';
 import 'package:union_shop/personalisation_page.dart';
+import 'package:union_shop/sale_page.dart';
 
 void main() {
   runApp(const UnionShopApp());
@@ -37,6 +38,7 @@ class UnionShopApp extends StatelessWidget {
         '/about': (context) => const AboutPage(),
         '/print-shack': (context) => const PrintShackPage(),
         '/personalisation': (context) => const PersonalisationPage(),
+        '/sale': (context) => const SalePage(),
         '/collections/portsmouth-city': (context) => const PortsmouthCityCollection(),
         '/collections/essential-range': (context) => const EssentialRangeCollection(),
         '/collections/signature-essential': (context) => const CombinedCollection(),
@@ -432,7 +434,7 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                   const SizedBox(width: 12),
                                   TextButton(
-                                    onPressed: placeholderCallbackForButtons,
+                                    onPressed: () => Navigator.pushNamed(context, '/sale'),
                                     child: const Text(
                                       'Sale',
                                       style: TextStyle(
