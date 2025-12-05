@@ -1,8 +1,8 @@
 # Union Shop - University of Portsmouth Students' Union Store
 
-A comprehensive Flutter e-commerce application developed as coursework for the University of Portsmouth Students' Union online store. This application provides a full-featured shopping experience with product browsing, cart management, personalisation services, and multiple product collections.
+A  Flutter e-commerce application developed as coursework for the University of Portsmouth Students' Union online store. This application provides a full on shopping experience with product browsing, cart management, personalisation services, and multiple product collections.
 
-## 📋 Table of Contents
+##  Table of Contents
 
 - [Features](#features)
 - [Project Structure](#project-structure)
@@ -14,7 +14,7 @@ A comprehensive Flutter e-commerce application developed as coursework for the U
 - [Testing](#testing)
 - [Future Enhancements](#future-enhancements)
 
-## ✨ Features
+##  Features
 
 ### Core E-Commerce Functionality
 - **Product Browsing**: View products organized by collections
@@ -25,7 +25,7 @@ A comprehensive Flutter e-commerce application developed as coursework for the U
 
 ### Product Collections
 - **Signature & Essential Range**: Combined collection showcasing premium university merchandise
-- **Portsmouth City Collection**: City-themed products celebrating Portsmouth
+- **Portsmouth City Collection**: City-themed products for the city Portsmouth
 - **Collections Overview**: Dedicated page showcasing all available collections
 - **Sale Section**: Dedicated page displaying products with discounted prices
 
@@ -80,7 +80,7 @@ union_shop/
 └── README.md                              # This file
 ```
 
-## 🔧 Technical Implementation
+##  Technical Implementation
 
 ### Framework & Language
 - **Flutter**: Cross-platform mobile/web framework
@@ -128,7 +128,7 @@ Uses Flutter's named routes with `onGenerateRoute` for dynamic routing:
 3. **Widget Composition**: Reusable components across pages
 4. **Null Safety**: Full Dart null safety implementation
 
-## 🚀 Installation
+##  Installation
 
 ### Prerequisites
 - Flutter SDK (>=2.17.0 <4.0.0)
@@ -173,7 +173,7 @@ Uses Flutter's named routes with `onGenerateRoute` for dynamic routing:
    flutter build ios
    ```
 
-## 💻 Usage
+##  Usage
 
 ### Adding Products to Cart
 
@@ -212,7 +212,7 @@ Uses Flutter's named routes with `onGenerateRoute` for dynamic routing:
 3. Original prices shown with strikethrough
 4. Sale prices displayed in red
 
-## 📄 Pages Overview
+##  Pages Overview
 
 ### Home Screen (`main.dart`)
 - Hero banner with sale announcement
@@ -260,7 +260,7 @@ Uses Flutter's named routes with `onGenerateRoute` for dynamic routing:
 - Hero images
 - Contact information
 
-## 🔄 State Management
+## State Management
 
 ### CartModel Implementation
 
@@ -293,7 +293,7 @@ All cart-dependent UI elements use `ValueListenableBuilder`:
 - Total price display
 - Empty cart messages
 
-## 🧪 Testing
+## Testing
 
 ### Test Files
 - `test/home_test.dart`: Home screen widget tests
@@ -352,7 +352,7 @@ flutter test --coverage
    - Screen reader support
    - Keyboard navigation
 
-## 📝 Development Notes
+## Development Notes
 
 ### Code Style
 - Follows Flutter/Dart style guidelines
@@ -367,23 +367,23 @@ flutter test --coverage
 - `flutter_lints`: Linting rules
 
 ### Platform Support
-- ✅ Web
-- ✅ iOS
-- ✅ Linux
-- ✅ macOS
-- ✅ Windows
+-  Web
+-  iOS
+-  Linux
+-  macOS
+-  Windows
 
-## 👨‍💻 Author
+##  Author
 
 **Leo Mack**
 - GitHub: [@leo-mack](https://github.com/leo-mack)
 - Project: University of Portsmouth Coursework TB1
 
-## 📄 License
+##  License
 
 This project is developed as coursework for the University of Portsmouth.
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - Help from Friends
 - Course instructors for guidance and feedback

@@ -4,58 +4,74 @@ import 'package:union_shop/main.dart';
 
 void main() {
   group('Home Page Tests', () {
-    testWidgets('should display home page with basic elements', (tester) async {
+    testWidgets('should display home page with sale banner', (tester) async {
       await tester.pumpWidget(const UnionShopApp());
       await tester.pump();
 
-      // Check that basic UI elements are present
+      // Check that sale banner is present
       expect(
-        find.text('PLACEHOLDER HEADER TEXT - STUDENTS TO UPDATE!'),
+        find.text('BIG SALE! OUR ESSENTIAL RANGE HAS DROPPED IN PRICE! OVER 20% OFF! COME GRAB YOURS WHILE STOCK LASTS!'),
         findsOneWidget,
       );
-      expect(find.text('Placeholder Hero Title'), findsOneWidget);
-      expect(find.text('PLACEHOLDER PRODUCTS SECTION'), findsOneWidget);
-      expect(find.text('BROWSE PRODUCTS'), findsOneWidget);
-      expect(find.text('VIEW ALL PRODUCTS'), findsOneWidget);
     });
 
-    testWidgets('should display product cards', (tester) async {
+    testWidgets('should display navigation menu', (tester) async {
       await tester.pumpWidget(const UnionShopApp());
       await tester.pump();
 
-      // Check that product cards are displayed
-      expect(find.text('Placeholder Product 1'), findsOneWidget);
-      expect(find.text('Placeholder Product 2'), findsOneWidget);
-      expect(find.text('Placeholder Product 3'), findsOneWidget);
-      expect(find.text('Placeholder Product 4'), findsOneWidget);
-
-      // Check prices are displayed
-      expect(find.text('£10.00'), findsOneWidget);
-      expect(find.text('£15.00'), findsOneWidget);
-      expect(find.text('£20.00'), findsOneWidget);
-      expect(find.text('£25.00'), findsOneWidget);
+      // Check navigation elements
+      expect(find.text('Home'), findsOneWidget);
+      expect(find.text('Shop'), findsOneWidget);
+      expect(find.text('The Print Shack'), findsOneWidget);
+      expect(find.text('Sale'), findsOneWidget);
     });
 
-    testWidgets('should display header icons', (tester) async {
+    testWidgets('should display collection cards', (tester) async {
       await tester.pumpWidget(const UnionShopApp());
       await tester.pump();
 
-      // Check that header icons are present
-      expect(find.byIcon(Icons.search), findsOneWidget);
-      expect(find.byIcon(Icons.shopping_bag_outlined), findsOneWidget);
-      expect(find.byIcon(Icons.menu), findsOneWidget);
+      // Check that collection cards are displayed
+      expect(find.text('Signature & Essential Range'), findsWidgets);
+      expect(find.text('Portsmouth City Collection'), findsWidgets);
     });
 
-    testWidgets('should display footer', (tester) async {
+    testWidgets('should display cart and login buttons', (tester) async {
       await tester.pumpWidget(const UnionShopApp());
       await tester.pump();
 
-      // Check that footer is present
-      expect(find.text('Placeholder Footer'), findsOneWidget);
-      expect(
-        find.text('Students should customise this footer section'),
-        findsOneWidget,
-      );
+      // Check that cart and login buttons are present
+      expect(find.text('Cart'), findsOneWidget);
+      expect(find.text('Login'), findsOneWidget);
+    });
+
+    testWidgets('should navigate to cart page', (tester) async {
+      await tester.pumpWidget(const UnionShopApp());
+      await tester.pump();
+
+      // Tap on Cart button
+      await tester.tap(find.text('Cart'));
+      await tester.pumpAndSettle();
+
+      // Verify navigation to cart page
+      expect(find.text('Your Cart'), findsOneWidget);
+    });
+
+    testWidgets('should have Shop dropdown menu', (tester) async {
+      await tester.pumpWidget(const UnionShopApp());
+      await tester.pump();
+
+      // Find Shop button with dropdown
+      expect(find.text('Shop'), findsOneWidget);
+      expect(find.byIcon(Icons.arrow_drop_down), findsWidgets);
+    });
+
+    testWidgets('should have footer section', (tester) async {
+      await tester.pumpWidget(const UnionShopApp());
+      await tester.pump();
+
+      // Check for footer elements
+      expect(find.text('About Us'), findsOneWidget);
+      expect(find.text('Contact'), findsOneWidget);
     });
   });
 }
