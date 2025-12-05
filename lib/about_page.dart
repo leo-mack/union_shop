@@ -51,9 +51,45 @@ class AboutPage extends StatelessWidget {
                                 children: [
                                   TextButton(onPressed: () => Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false), child: const Text('Home', style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500))),
                                   const SizedBox(width: 12),
-                                  PopupMenuButton<String>(onSelected: (_) {}, itemBuilder: (context) => const [PopupMenuItem(value: 'clothing', child: Text('Clothing')), PopupMenuItem(value: 'merchandise', child: Text('Merchandise')), PopupMenuItem(value: 'halloween', child: Text('Halloween 🎃'))], child: Row(children: const [Text('Shop', style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500)), SizedBox(width: 4), Icon(Icons.arrow_drop_down, color: Colors.black)])),
+                                  PopupMenuButton<String>(
+                                    onSelected: (value) {
+                                      if (value == 'signature-essential') {
+                                        Navigator.pushNamed(context, '/collections/signature-essential');
+                                      } else if (value == 'portsmouth') {
+                                        Navigator.pushNamed(context, '/collections/portsmouth-city');
+                                      }
+                                    },
+                                    itemBuilder: (context) => const [
+                                      PopupMenuItem(value: 'signature-essential', child: Text('Signature & Essential Range')),
+                                      PopupMenuItem(value: 'portsmouth', child: Text('Portsmouth City Collection')),
+                                    ],
+                                    child: Row(
+                                      children: const [
+                                        Text('Shop', style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500)),
+                                        SizedBox(width: 4),
+                                        Icon(Icons.arrow_drop_down, color: Colors.black),
+                                      ],
+                                    ),
+                                  ),
                                   const SizedBox(width: 12),
-                                  PopupMenuButton<String>(onSelected: (_) {}, itemBuilder: (context) => const [PopupMenuItem(value: 'about', child: Text('About')), PopupMenuItem(value: 'personalisation', child: Text('Personalisation'))], child: Row(children: const [Text('The Print Shack', style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500)), SizedBox(width: 4), Icon(Icons.arrow_drop_down, color: Colors.black)])),
+                                  PopupMenuButton<String>(
+                                    onSelected: (value) {
+                                      if (value == 'about' || value == 'personalisation') {
+                                        Navigator.pushNamed(context, '/print-shack');
+                                      }
+                                    },
+                                    itemBuilder: (context) => const [
+                                      PopupMenuItem(value: 'about', child: Text('About')),
+                                      PopupMenuItem(value: 'personalisation', child: Text('Personalisation')),
+                                    ],
+                                    child: Row(
+                                      children: const [
+                                        Text('The Print Shack', style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500)),
+                                        SizedBox(width: 4),
+                                        Icon(Icons.arrow_drop_down, color: Colors.black),
+                                      ],
+                                    ),
+                                  ),
                                   const SizedBox(width: 12),
                                   TextButton(onPressed: () {}, child: const Text('SALE!', style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500))),
                                 ],

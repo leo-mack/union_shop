@@ -8,6 +8,7 @@ import 'package:union_shop/essential_range_collection.dart';
 import 'package:union_shop/cart_page.dart';
 import 'package:union_shop/about_page.dart';
 import 'package:union_shop/combined_collection.dart';
+import 'package:union_shop/print_shack_page.dart';
 
 void main() {
   runApp(const UnionShopApp());
@@ -33,6 +34,7 @@ class UnionShopApp extends StatelessWidget {
         '/product': (context) => const ProductPage(),
         '/cart': (context) => const CartPage(),
         '/about': (context) => const AboutPage(),
+        '/print-shack': (context) => const PrintShackPage(),
         '/collections/portsmouth-city': (context) => const PortsmouthCityCollection(),
         '/collections/essential-range': (context) => const EssentialRangeCollection(),
         '/collections/signature-essential': (context) => const CombinedCollection(),
@@ -402,7 +404,11 @@ class HomeScreen extends StatelessWidget {
                                   const SizedBox(width: 12),
                                   // The Print Shack with dropdown
                                   PopupMenuButton<String>(
-                                    onSelected: (value) => placeholderCallbackForButtons(),
+                                    onSelected: (value) {
+                                      if (value == 'about' || value == 'personalisation') {
+                                        Navigator.pushNamed(context, '/print-shack');
+                                      }
+                                    },
                                     itemBuilder: (context) => const [
                                       PopupMenuItem(value: 'about', child: Text('About')),
                                       PopupMenuItem(value: 'personalisation', child: Text('Personalisation')),

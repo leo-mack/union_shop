@@ -106,7 +106,11 @@ class PortsmouthCityCollection extends StatelessWidget {
                                   const SizedBox(width: 12),
                                   // The Print Shack with dropdown
                                   PopupMenuButton<String>(
-                                    onSelected: (_) {},
+                                    onSelected: (value) {
+                                      if (value == 'about' || value == 'personalisation') {
+                                        Navigator.pushNamed(context, '/print-shack');
+                                      }
+                                    },
                                     itemBuilder: (context) => const [
                                       PopupMenuItem(value: 'about', child: Text('About')),
                                       PopupMenuItem(value: 'personalisation', child: Text('Personalisation')),

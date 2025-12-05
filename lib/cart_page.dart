@@ -77,7 +77,24 @@ class CartPage extends StatelessWidget {
                                       ],
                                     ),
                                   ),
-                                  TextButton(onPressed: () {}, child: const Text('The Print Shack', style: TextStyle(color: Colors.black))),
+                                  PopupMenuButton<String>(
+                                    onSelected: (value) {
+                                      if (value == 'about' || value == 'personalisation') {
+                                        Navigator.pushNamed(context, '/print-shack');
+                                      }
+                                    },
+                                    itemBuilder: (context) => const [
+                                      PopupMenuItem(value: 'about', child: Text('About')),
+                                      PopupMenuItem(value: 'personalisation', child: Text('Personalisation')),
+                                    ],
+                                    child: Row(
+                                      children: const [
+                                        Text('The Print Shack', style: TextStyle(color: Colors.black)),
+                                        SizedBox(width: 4),
+                                        Icon(Icons.arrow_drop_down, color: Colors.black),
+                                      ],
+                                    ),
+                                  ),
                                   TextButton(onPressed: () {}, child: const Text('Sale', style: TextStyle(color: Colors.black))),
                                 ],
                               ),

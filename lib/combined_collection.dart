@@ -76,7 +76,24 @@ class CombinedCollection extends StatelessWidget {
                               ],
                             ),
                           ),
-                          TextButton(onPressed: () {}, child: const Text('The Print Shack', style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500))),
+                          PopupMenuButton<String>(
+                            onSelected: (value) {
+                              if (value == 'about' || value == 'personalisation') {
+                                Navigator.pushNamed(context, '/about');
+                              }
+                            },
+                            itemBuilder: (context) => const [
+                              PopupMenuItem(value: 'about', child: Text('About')),
+                              PopupMenuItem(value: 'personalisation', child: Text('Personalisation')),
+                            ],
+                            child: Row(
+                              children: const [
+                                Text('The Print Shack', style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500)),
+                                SizedBox(width: 4),
+                                Icon(Icons.arrow_drop_down, color: Colors.black),
+                              ],
+                            ),
+                          ),
                           TextButton(onPressed: () {}, child: const Text('Sale', style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500))),
                           TextButton(onPressed: () => Navigator.pushNamed(context, '/about'), child: const Text('About', style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500))),
                           const Spacer(),
