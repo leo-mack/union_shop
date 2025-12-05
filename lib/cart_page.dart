@@ -95,7 +95,7 @@ class CartPage extends StatelessWidget {
                                       ],
                                     ),
                                   ),
-                                  TextButton(onPressed: () {}, child: const Text('Sale', style: TextStyle(color: Colors.black))),
+                                  TextButton(onPressed: () => Navigator.pushNamed(context, '/sale'), child: const Text('Sale', style: TextStyle(color: Colors.black))),
                                 ],
                               ),
                               const SizedBox(height: 6),

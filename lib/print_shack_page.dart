@@ -93,7 +93,7 @@ class PrintShackPage extends StatelessWidget {
                                     ),
                                   ),
                                   const SizedBox(width: 12),
-                                  TextButton(onPressed: () {}, child: const Text('SALE!', style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500))),
+                                  TextButton(onPressed: () => Navigator.pushNamed(context, '/sale'), child: const Text('SALE!', style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500))),
                                 ],
                               ),
                               const SizedBox(height: 6),

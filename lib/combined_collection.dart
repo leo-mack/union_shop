@@ -94,7 +94,7 @@ class CombinedCollection extends StatelessWidget {
                               ],
                             ),
                           ),
-                          TextButton(onPressed: () {}, child: const Text('Sale', style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500))),
+                          TextButton(onPressed: () => Navigator.pushNamed(context, '/sale'), child: const Text('Sale', style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500))),
                           TextButton(onPressed: () => Navigator.pushNamed(context, '/about'), child: const Text('About', style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500))),
                           const Spacer(),
                           IconButton(icon: const Icon(Icons.search, size: 18, color: Colors.grey), padding: const EdgeInsets.all(8), constraints: const BoxConstraints(minWidth: 32, minHeight: 32), onPressed: () {}),

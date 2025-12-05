@@ -131,7 +131,7 @@ class EssentialRangeCollection extends StatelessWidget {
                                   ),
                                   const SizedBox(width: 12),
                                   TextButton(
-                                    onPressed: () {},
+                                    onPressed: () => Navigator.pushNamed(context, '/sale'),
                                     child: const Text(
                                       'Sale',
                                       style: TextStyle(
