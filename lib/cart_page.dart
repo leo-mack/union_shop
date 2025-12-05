@@ -57,11 +57,27 @@ class CartPage extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   TextButton(onPressed: () => Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false), child: const Text('Home', style: TextStyle(color: Colors.black))),
-                                  const SizedBox(width: 12),
-                                  TextButton(onPressed: () {}, child: const Text('Shop', style: TextStyle(color: Colors.black))),
-                                  const SizedBox(width: 12),
+                                  PopupMenuButton<String>(
+                                    onSelected: (value) {
+                                      if (value == 'signature-essential') {
+                                        Navigator.pushNamed(context, '/collections/signature-essential');
+                                      } else if (value == 'portsmouth') {
+                                        Navigator.pushNamed(context, '/collections/portsmouth-city');
+                                      }
+                                    },
+                                    itemBuilder: (context) => const [
+                                      PopupMenuItem(value: 'signature-essential', child: Text('Signature & Essential Range')),
+                                      PopupMenuItem(value: 'portsmouth', child: Text('Portsmouth City Collection')),
+                                    ],
+                                    child: Row(
+                                      children: const [
+                                        Text('Shop', style: TextStyle(color: Colors.black)),
+                                        SizedBox(width: 4),
+                                        Icon(Icons.arrow_drop_down, color: Colors.black),
+                                      ],
+                                    ),
+                                  ),
                                   TextButton(onPressed: () {}, child: const Text('The Print Shack', style: TextStyle(color: Colors.black))),
-                                  const SizedBox(width: 12),
                                   TextButton(onPressed: () {}, child: const Text('Sale', style: TextStyle(color: Colors.black))),
                                 ],
                               ),

@@ -102,11 +102,16 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                   const SizedBox(width: 12),
                                   // Shop with dropdown
                                   PopupMenuButton<String>(
-                                    onSelected: (_) {},
+                                    onSelected: (value) {
+                                      if (value == 'signature-essential') {
+                                        Navigator.pushNamed(context, '/collections/signature-essential');
+                                      } else if (value == 'portsmouth') {
+                                        Navigator.pushNamed(context, '/collections/portsmouth-city');
+                                      }
+                                    },
                                     itemBuilder: (context) => const [
-                                      PopupMenuItem(value: 'clothing', child: Text('Clothing')),
-                                      PopupMenuItem(value: 'merchandise', child: Text('Merchandise')),
-                                      PopupMenuItem(value: 'halloween', child: Text('Halloween 🎃')),
+                                      PopupMenuItem(value: 'signature-essential', child: Text('Signature & Essential Range')),
+                                      PopupMenuItem(value: 'portsmouth', child: Text('Portsmouth City Collection')),
                                     ],
                                     child: Row(
                                       children: const [

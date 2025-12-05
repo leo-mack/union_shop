@@ -7,6 +7,7 @@ import 'package:union_shop/product_detail_page.dart';
 import 'package:union_shop/essential_range_collection.dart';
 import 'package:union_shop/cart_page.dart';
 import 'package:union_shop/about_page.dart';
+import 'package:union_shop/combined_collection.dart';
 
 void main() {
   runApp(const UnionShopApp());
@@ -34,6 +35,7 @@ class UnionShopApp extends StatelessWidget {
         '/about': (context) => const AboutPage(),
         '/collections/portsmouth-city': (context) => const PortsmouthCityCollection(),
         '/collections/essential-range': (context) => const EssentialRangeCollection(),
+        '/collections/signature-essential': (context) => const CombinedCollection(),
         '/login': (context) => const LoginPage(),
       },
       onGenerateRoute: (settings) {
@@ -371,11 +373,15 @@ class HomeScreen extends StatelessWidget {
                                   const SizedBox(width: 12),
                                   // Shop with dropdown
                                   PopupMenuButton<String>(
-                                    onSelected: (value) => placeholderCallbackForButtons(),
+                                    onSelected: (value) {
+                                      if (value == 'signature-essential') {
+                                        Navigator.pushNamed(context, '/collections/signature-essential');
+                                      } else if (value == 'portsmouth') {
+                                        Navigator.pushNamed(context, '/collections/portsmouth-city');
+                                      }
+                                    },
                                     itemBuilder: (context) => const [
-                                      PopupMenuItem(value: 'clothing', child: Text('Clothing')),
-                                      PopupMenuItem(value: 'merchandise', child: Text('Merchandise')),
-                                      PopupMenuItem(value: 'essential', child: Text('Signature and Essential Range')),
+                                      PopupMenuItem(value: 'signature-essential', child: Text('Signature & Essential Range')),
                                       PopupMenuItem(value: 'portsmouth', child: Text('Portsmouth City Collection')),
                                     ],
                                     child: Row(
