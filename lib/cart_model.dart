@@ -4,12 +4,16 @@ class CartItem {
   final String title;
   final String price; // e.g. '£16.00'
   final String imageUrl;
+  final String color;
+  final String size;
   int quantity;
 
   CartItem({
     required this.title,
     required this.price,
     required this.imageUrl,
+    required this.color,
+    required this.size,
     this.quantity = 1,
   });
 
@@ -30,9 +34,9 @@ class Cart {
   List<CartItem> get items => List.unmodifiable(itemsNotifier.value);
 
   void addItem(CartItem item) {
-    // If same title & price & image exists, just increase quantity
+    // If same title & price & image & color & size exists, just increase quantity
     final list = List<CartItem>.from(itemsNotifier.value);
-    final idx = list.indexWhere((e) => e.title == item.title && e.price == item.price && e.imageUrl == item.imageUrl);
+    final idx = list.indexWhere((e) => e.title == item.title && e.price == item.price && e.imageUrl == item.imageUrl && e.color == item.color && e.size == item.size);
     if (idx >= 0) {
       list[idx].quantity += item.quantity;
     } else {
@@ -43,14 +47,14 @@ class Cart {
 
   void removeItem(CartItem item) {
     final list = List<CartItem>.from(itemsNotifier.value);
-    list.removeWhere((e) => e.title == item.title && e.price == item.price && e.imageUrl == item.imageUrl);
+    list.removeWhere((e) => e.title == item.title && e.price == item.price && e.imageUrl == item.imageUrl && e.color == item.color && e.size == item.size);
     itemsNotifier.value = list;
   }
 
   void updateQuantity(CartItem item, int quantity) {
     if (quantity < 1) return;
     final list = List<CartItem>.from(itemsNotifier.value);
-    final idx = list.indexWhere((e) => e.title == item.title && e.price == item.price && e.imageUrl == item.imageUrl);
+    final idx = list.indexWhere((e) => e.title == item.title && e.price == item.price && e.imageUrl == item.imageUrl && e.color == item.color && e.size == item.size);
     if (idx >= 0) {
       list[idx].quantity = quantity;
       itemsNotifier.value = list;

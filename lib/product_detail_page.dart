@@ -24,6 +24,11 @@ class ProductDetailPage extends StatefulWidget {
 
 class _ProductDetailPageState extends State<ProductDetailPage> {
   int _quantity = 1;
+  String _selectedColor = '';
+  String _selectedSize = '';
+
+  final List<String> _colors = ['Purple', 'Pink', 'Blue', 'Black'];
+  final List<String> _sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
   @override
   Widget build(BuildContext context) {
@@ -350,6 +355,58 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 ),
                               ),
                               const SizedBox(height: 32),
+                              // Color selector
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    'Color: ',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  DropdownButtonFormField<String>(
+                                    value: _selectedColor.isEmpty ? null : _selectedColor,
+                                    items: _colors.map((color) => DropdownMenuItem(value: color, child: Text(color))).toList(),
+                                    onChanged: (value) => setState(() => _selectedColor = value ?? ''),
+                                    decoration: const InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                                    ),
+                                    hint: const Text('Select color'),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 16),
+                              // Size selector
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    'Size: ',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  DropdownButtonFormField<String>(
+                                    value: _selectedSize.isEmpty ? null : _selectedSize,
+                                    items: _sizes.map((size) => DropdownMenuItem(value: size, child: Text(size))).toList(),
+                                    onChanged: (value) => setState(() => _selectedSize = value ?? ''),
+                                    decoration: const InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                                    ),
+                                    hint: const Text('Select size'),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 32),
                               // Quantity selector
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -388,10 +445,18 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 width: double.infinity,
                                 child: ElevatedButton(
                                     onPressed: () {
+                                      if (_selectedColor.isEmpty || _selectedSize.isEmpty) {
+                                        ScaffoldMessenger.of(context).showSnackBar(
+                                          const SnackBar(content: Text('Please select color and size')),
+                                        );
+                                        return;
+                                      }
                                       final item = CartItem(
                                         title: widget.title,
                                         price: widget.price,
                                         imageUrl: widget.imageUrl,
+                                        color: _selectedColor,
+                                        size: _selectedSize,
                                         quantity: _quantity,
                                       );
                                       Cart.instance.addItem(item);

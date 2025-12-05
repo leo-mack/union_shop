@@ -163,9 +163,9 @@ class CartPage extends StatelessWidget {
                                                 children: [
                                                   Text(item.title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
                                                   const SizedBox(height: 6),
-                                                  const Text('Color: Baby Pink', style: TextStyle(fontSize: 12, color: Colors.grey)),
+                                                  Text('Color: ${item.color}', style: const TextStyle(fontSize: 12, color: Colors.grey)),
                                                   const SizedBox(height: 4),
-                                                  const Text('Size: L', style: TextStyle(fontSize: 12, color: Colors.grey)),
+                                                  Text('Size: ${item.size}', style: const TextStyle(fontSize: 12, color: Colors.grey)),
                                                   TextButton(onPressed: () => Cart.instance.removeItem(item), child: const Text('Remove', style: TextStyle(color: Color(0xFF4d2963)))),
                                                 ],
                                               ),
